@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct RegistrationStep5: View {
-
+    
     @State var brand = CreateBrandRequestBody()
+    @State private var checked: [Bool]
     
     let optionsAvgBill = ["0 - 1.000",
                           "1.000 - 10.000",
@@ -17,24 +18,27 @@ struct RegistrationStep5: View {
                           "100.000 - 500.000",
                           "500.000+"]
     
+    init() {
+        _checked = State(initialValue: [Bool](repeating: false, count: optionsAvgBill.count))
+    }
+    
     var body: some View {
         GeometryReader { geometry in
             ScrollView {
                 VStack {
                     
-                   // Spacer()
+                    Spacer()
                     
                     Text("Расскажите о своем\nбренде")
                         .foregroundColor(Color("W2wBlueColor"))
                         .font(.custom("PoiretOne-Regular", size: 34))
                         .multilineTextAlignment(.center)
-                        .padding(.bottom, 50)
-                        
-                     
-                  // Spacer()
+                    
+                    
+                    Spacer()
                     
                     VStack {
-
+                        
                         Text("Средний чек вашего бренда (в рублях)?")
                             .font(Font.custom("Manrope", size: 14))
                             .tracking(0.28)
@@ -52,21 +56,19 @@ struct RegistrationStep5: View {
                             .multilineTextAlignment(.leading)
                             .frame(maxWidth: .infinity, alignment: .leading)
                         
-                        ForEach(optionsAvgBill, id: \.self) { option in
-                            TableRow(text: option)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                            
-//                            if TableRow(text: option).isChecked {
-//                                print("\(option) On 1")
-//                            }
-                            
+                        ForEach(optionsAvgBill.indices, id: \.self) { index in
+                            HStack {
+                                CheckBoxView(checked: $checked[index], text: optionsAvgBill[index]) {
+                                    checkOnlyOne(at: index)
+                                }
+                            }
                         }
                     }
                     .padding(.horizontal, 65.0)
                     //.frame(width: 358)
                     
-
-                    NavigationLink(destination: RegistrationStep6(brand: brand)) {
+                    
+                    NavigationLink(destination: RegistrationStep6()) {
                         Text("Далее")
                     }
                     .frame(width: geometry.size.width - 120, height: 45.0)
@@ -78,7 +80,7 @@ struct RegistrationStep5: View {
                     .padding(.top)
                     
                     Image("Vector")
-                        .padding(.top, 30.0)
+                        .padding(.top, 38.0)
                     
                     Spacer()
                 }
@@ -87,6 +89,11 @@ struct RegistrationStep5: View {
         }
         .navigationArrowLef()
         .background(Color(red: 248, green: 248, blue: 248))
+    }
+    private func checkOnlyOne(at index: Int) {
+        for i in checked.indices {
+            checked[i] = (i == index)
+        }
     }
 }
 

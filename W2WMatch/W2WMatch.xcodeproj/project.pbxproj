@@ -60,9 +60,10 @@
 		C54381F02C24C25000DB7B27 /* 13_LogoLoadScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54381EF2C24C25000DB7B27 /* 13_LogoLoadScreen.swift */; };
 		C54381F42C25FFE400DB7B27 /* PhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54381F32C25FFE400DB7B27 /* PhotoModel.swift */; };
 		C54381F62C26C7FA00DB7B27 /* 14_PersonPhotoScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54381F52C26C7FA00DB7B27 /* 14_PersonPhotoScreen.swift */; };
+		C54382122C28332600DB7B27 /* TableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54382112C28332600DB7B27 /* TableRow.swift */; };
 		C5CC6FE72C1F5F3600E707E4 /* 7_AboutYorselfScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CC6FE62C1F5F3600E707E4 /* 7_AboutYorselfScreen.swift */; };
 		C5CC6FE92C1FFDA100E707E4 /* 8_InterectionFormatScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CC6FE82C1FFDA100E707E4 /* 8_InterectionFormatScreen.swift */; };
-		C5CC6FEB2C200BE300E707E4 /* TableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CC6FEA2C200BE300E707E4 /* TableRow.swift */; };
+		C5CC6FEB2C200BE300E707E4 /* CheckBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CC6FEA2C200BE300E707E4 /* CheckBoxView.swift */; };
 		C5CC6FED2C22AD3C00E707E4 /* 10_VeryImportantScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CC6FEC2C22AD3C00E707E4 /* 10_VeryImportantScreen.swift */; };
 		C5CC6FEF2C22B3CE00E707E4 /* 12_LastAuthScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CC6FEE2C22B3CE00E707E4 /* 12_LastAuthScreen.swift */; };
 		C5CC6FF62C234C9400E707E4 /* BrandPictureSelecterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CC6FF52C234C9400E707E4 /* BrandPictureSelecterView.swift */; };
@@ -126,9 +127,10 @@
 		C54381EF2C24C25000DB7B27 /* 13_LogoLoadScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 13_LogoLoadScreen.swift; sourceTree = "<group>"; };
 		C54381F32C25FFE400DB7B27 /* PhotoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoModel.swift; sourceTree = "<group>"; };
 		C54381F52C26C7FA00DB7B27 /* 14_PersonPhotoScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 14_PersonPhotoScreen.swift; sourceTree = "<group>"; };
+		C54382112C28332600DB7B27 /* TableRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableRow.swift; sourceTree = "<group>"; };
 		C5CC6FE62C1F5F3600E707E4 /* 7_AboutYorselfScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 7_AboutYorselfScreen.swift; sourceTree = "<group>"; };
 		C5CC6FE82C1FFDA100E707E4 /* 8_InterectionFormatScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 8_InterectionFormatScreen.swift; sourceTree = "<group>"; };
-		C5CC6FEA2C200BE300E707E4 /* TableRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableRow.swift; sourceTree = "<group>"; };
+		C5CC6FEA2C200BE300E707E4 /* CheckBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxView.swift; sourceTree = "<group>"; };
 		C5CC6FEC2C22AD3C00E707E4 /* 10_VeryImportantScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 10_VeryImportantScreen.swift; sourceTree = "<group>"; };
 		C5CC6FEE2C22B3CE00E707E4 /* 12_LastAuthScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 12_LastAuthScreen.swift; sourceTree = "<group>"; };
 		C5CC6FF52C234C9400E707E4 /* BrandPictureSelecterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandPictureSelecterView.swift; sourceTree = "<group>"; };
@@ -233,7 +235,8 @@
 			children = (
 				C5CC6FF92C2355C900E707E4 /* PhotoView.swift */,
 				C54381F32C25FFE400DB7B27 /* PhotoModel.swift */,
-				C5CC6FEA2C200BE300E707E4 /* TableRow.swift */,
+				C5CC6FEA2C200BE300E707E4 /* CheckBoxView.swift */,
+				C54382112C28332600DB7B27 /* TableRow.swift */,
 				2E81F4932C1DC51B0032BFC7 /* ContentView.swift */,
 				2E81F46B2C1DC4580032BFC7 /* Auth */,
 				2E81F46D2C1DC4580032BFC7 /* Components */,
@@ -393,6 +396,7 @@
 				C54381F42C25FFE400DB7B27 /* PhotoModel.swift in Sources */,
 				2E81F48D2C1DC4590032BFC7 /* TokensInfo.swift in Sources */,
 				2EC0122E2C0CA2FA0029AAE8 /* W2WMatchApp.swift in Sources */,
+				C54382122C28332600DB7B27 /* TableRow.swift in Sources */,
 				2E81F48C2C1DC4590032BFC7 /* TokenInfo.swift in Sources */,
 				2E81F4802C1DC4590032BFC7 /* Endpoint.swift in Sources */,
 				2E81F48E2C1DC4590032BFC7 /* User.swift in Sources */,
@@ -409,7 +413,7 @@
 				2E81F4A22C1F199C0032BFC7 /* ChatsView.swift in Sources */,
 				2E2A787C2C138FBC003C1836 /* NetworkModel.swift in Sources */,
 				2E81F49E2C1F19300032BFC7 /* MatchView.swift in Sources */,
-				C5CC6FEB2C200BE300E707E4 /* TableRow.swift in Sources */,
+				C5CC6FEB2C200BE300E707E4 /* CheckBoxView.swift in Sources */,
 				2E81F49C2C1F191B0032BFC7 /* PartnersView.swift in Sources */,
 				2E81F4A02C1F19760032BFC7 /* MainTabView.swift in Sources */,
 				2E2A787E2C1397C9003C1836 /* AlertServise.swift in Sources */,

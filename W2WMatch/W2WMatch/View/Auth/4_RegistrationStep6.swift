@@ -10,6 +10,7 @@ import SwiftUI
 struct RegistrationStep6: View {
 
     @State var brand = CreateBrandRequestBody()
+    @State private var checked: [Bool]
     
     let optionsCategory = ["Красота и здоровье",
                            "Товары для детей",
@@ -21,22 +22,24 @@ struct RegistrationStep6: View {
                            "Фрилансеры / агентства",
                            "Инфлюенсеры / блогеры"]
     
+    init() {
+        _checked = State(initialValue: [Bool](repeating: false, count: optionsCategory.count))
+    }
+    
     var body: some View {
         GeometryReader { geometry in
             ScrollView {
                 VStack {
                     
-                   // Spacer()
+                    Spacer()
                     
                     Text("Расскажите\nо своем бизнесе")
                         .foregroundColor(Color("W2wBlueColor"))
                         .font(.custom("PoiretOne-Regular", size: 34))
                         .multilineTextAlignment(.center)
-                        .fixedSize(horizontal: false, vertical: true)
-                        .padding(.bottom, 15)
                         
                      
-                   // Spacer()
+                    Spacer()
                     
                     VStack {
 
@@ -57,35 +60,31 @@ struct RegistrationStep6: View {
                             .multilineTextAlignment(.leading)
                             .frame(maxWidth: .infinity, alignment: .leading)
                         
-                        ForEach(optionsCategory, id: \.self) { option in
-                            TableRow(text: option)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                            
-//                            if TableRow(text: option).isChecked {
-//                                print("\(option) On 1")
-//                            }
-                            
+                        ForEach(optionsCategory.indices, id: \.self) { index in
+                            HStack {
+                                CheckBoxView(checked: $checked[index], text: optionsCategory[index]) {
+                                    checkOnlyOne(at: index)
+                                }
+                            }
                         }
                     }
                     .padding(.horizontal, 65.0)
                     //.frame(width: 358)
                     
 
-//                    ScrollView {
-                        NavigationLink(destination: RegistrationStep7(brand: brand)) {
-                            Text("Далее")
-                        }
-                        .frame(width: geometry.size.width - 120, height: 45.0)
-                        .foregroundStyle(.white)
-                        .background {
-                            RoundedRectangle(cornerRadius: 15)
-                                .fill(Color("W2wLightBlueColor"))
-                        }
-//                    }
+                    NavigationLink(destination: RegistrationStep7()) {
+                        Text("Далее")
+                    }
+                    .frame(width: geometry.size.width - 120, height: 45.0)
+                    .foregroundStyle(.white)
+                    .background {
+                        RoundedRectangle(cornerRadius: 15)
+                            .fill(Color("W2wLightBlueColor"))
+                    }
                    // .padding(.top)
                     
                     Image("Vector")
-                        .padding(.top, 30)
+                        //.padding(.top)
                     
                     Spacer()
                 }
@@ -94,6 +93,11 @@ struct RegistrationStep6: View {
         }
         .navigationArrowLef()
         .background(Color(red: 248, green: 248, blue: 248))
+    }
+    private func checkOnlyOne(at index: Int) {
+        for i in checked.indices {
+            checked[i] = (i == index)
+        }
     }
 }
 
