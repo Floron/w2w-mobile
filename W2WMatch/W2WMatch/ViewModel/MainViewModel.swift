@@ -173,6 +173,8 @@ class MainViewModel: ObservableObject {
         }
     }
     
+    
+    
 //    func handleImageNavigation(photoData: Data) -> String  {
 //        if let uiImage = UIImage(data: photoData) {
 //           

@@ -16,7 +16,7 @@ struct RegistrationStep3: View {
             ScrollView {
                 VStack {
                     
-                    Spacer()
+                   // Spacer()
                     
                     Text("Расскажите о своем\nбренде")
                         .foregroundColor(Color("W2wBlueColor"))
@@ -24,7 +24,7 @@ struct RegistrationStep3: View {
                         .multilineTextAlignment(.center)
                         
                      
-                    Spacer()
+                    //Spacer()
                     
                     VStack {
                         HStack {
@@ -34,6 +34,7 @@ struct RegistrationStep3: View {
                                 .foregroundColor(Color("W2wBlueColor"))
                             Spacer()
                         }
+                        .padding(.top, 50)
                         
                         TextField(text: $brand.brandNamePos.animation()) {
                             Text("Название бренда")
@@ -44,13 +45,21 @@ struct RegistrationStep3: View {
                         .textInputAutocapitalization(.never)
                         .keyboardType(.default)
                         .disableAutocorrection(true)
-                        .padding()
-                        .frame(width: 255.0, height: 45.0)
-                        .overlay( /// apply a rounded border
-                            RoundedRectangle(cornerRadius: 15)
-                                .stroke(Color("W2wLightBlueColor"), lineWidth: 2))
+                        .padding(EdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 16))
+                        .frame(width: 255, height: 45)
+                        .background(.white)
+                        .cornerRadius(12)
+                        .shadow(
+                            color: Color(red: 0.46, green: 0.54, blue: 0.71, opacity: 0.2), radius: 12, x: 3, y: 3
+                        )
                         .foregroundStyle(Color("W2wLightBlueColor"))
-                        .padding(.bottom, 25.0)
+//                        .padding()
+//                        .frame(width: 255.0, height: 45.0)
+//                        .overlay( /// apply a rounded border
+//                            RoundedRectangle(cornerRadius: 15)
+//                                .stroke(Color("W2wLightBlueColor"), lineWidth: 2))
+//                        .foregroundStyle(Color("W2wLightBlueColor"))
+//                        .padding(.bottom, 25.0)
                         
                        
                         HStack {
@@ -60,6 +69,7 @@ struct RegistrationStep3: View {
                                 .foregroundColor(Color("W2wBlueColor"))
                             Spacer()
                         }
+                        .padding(.top, 30)
                         
                         TextField(text: $brand.tgNickname.animation()) {
                             Text("@nic")
@@ -70,13 +80,21 @@ struct RegistrationStep3: View {
                         .textInputAutocapitalization(.never)
                         .keyboardType(.default)
                         .disableAutocorrection(true)
-                        .padding()
-                        .frame(width: 255.0, height: 45.0)
-                        .overlay( /// apply a rounded border
-                            RoundedRectangle(cornerRadius: 15)
-                                .stroke(Color("W2wLightBlueColor"), lineWidth: 2))
+                        .padding(EdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 16))
+                        .frame(width: 255, height: 45)
+                        .background(.white)
+                        .cornerRadius(12)
+                        .shadow(
+                            color: Color(red: 0.46, green: 0.54, blue: 0.71, opacity: 0.2), radius: 12, x: 3, y: 3
+                        )
                         .foregroundStyle(Color("W2wLightBlueColor"))
-                        .padding(.bottom, 25.0)
+//                        .padding()
+//                        .frame(width: 255.0, height: 45.0)
+//                        .overlay( /// apply a rounded border
+//                            RoundedRectangle(cornerRadius: 15)
+//                                .stroke(Color("W2wLightBlueColor"), lineWidth: 2))
+//                        .foregroundStyle(Color("W2wLightBlueColor"))
+//                        .padding(.bottom, 25.0)
                         
                         HStack {
                             Text("Ссылка на сайт бренда или на маркетплейс (WB, OZON, Lamoda, Яндекс маркет)")
@@ -85,6 +103,7 @@ struct RegistrationStep3: View {
                                 .foregroundColor(Color("W2wBlueColor"))
                             Spacer()
                         }
+                        .padding(.top, 30)
                         
                         TextField(text: $brand.brandSiteURL.animation()) {
                             Text("Ссылка")
@@ -95,12 +114,20 @@ struct RegistrationStep3: View {
                         .textInputAutocapitalization(.never)
                         .keyboardType(.default)
                         .disableAutocorrection(true)
-                        .padding()
-                        .frame(width: 255.0, height: 45.0)
-                        .overlay( /// apply a rounded border
-                            RoundedRectangle(cornerRadius: 15)
-                                .stroke(Color("W2wLightBlueColor"), lineWidth: 2))
+                        .padding(EdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 16))
+                        .frame(width: 255, height: 45)
+                        .background(.white)
+                        .cornerRadius(12)
+                        .shadow(
+                            color: Color(red: 0.46, green: 0.54, blue: 0.71, opacity: 0.2), radius: 12, x: 3, y: 3
+                        )
                         .foregroundStyle(Color("W2wLightBlueColor"))
+//                        .padding()
+//                        .frame(width: 255.0, height: 45.0)
+//                        .overlay( /// apply a rounded border
+//                            RoundedRectangle(cornerRadius: 15)
+//                                .stroke(Color("W2wLightBlueColor"), lineWidth: 2))
+//                        .foregroundStyle(Color("W2wLightBlueColor"))
                       
                         
                     }
@@ -108,7 +135,7 @@ struct RegistrationStep3: View {
                     //.frame(width: 358)
                     
 
-                    NavigationLink(destination: RegistrationStep4(brand: brand)) {
+                    NavigationLink(destination: RegistrationStep4()) {
                         Text("Далее")
                     }
                     .frame(width: geometry.size.width - 120, height: 45.0)
@@ -120,7 +147,7 @@ struct RegistrationStep3: View {
                     .padding(.top)
                     
                     Image("Vector")
-                        .padding(.top, 38.0)
+                        .padding(.top, 30.0)
                     
                     Spacer()
                 }

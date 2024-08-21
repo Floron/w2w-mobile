@@ -9,6 +9,7 @@ import SwiftUI
 
 struct RegistrationStep4: View {
     @State var brand = CreateBrandRequestBody()
+    @State private var checked: [Bool]
     
     let optionsSubs = ["0 - 1.000",
                        "1.000 - 10.000",
@@ -16,18 +17,21 @@ struct RegistrationStep4: View {
                        "100.000 - 500.000",
                        "500.000+"]
     
+    init() {
+        _checked = State(initialValue: [Bool](repeating: false, count: optionsSubs.count))
+    }
+    
     var body: some View {
         GeometryReader { geometry in
             ScrollView {
                 VStack {
                     
-                    Spacer()
+                    //Spacer()
                     
                     Text("Расскажите о своем\nбренде")
                         .foregroundColor(Color("W2wBlueColor"))
                         .font(.custom("PoiretOne-Regular", size: 34))
                         .multilineTextAlignment(.center)
-                        
                      
                     Spacer()
                     
@@ -50,13 +54,21 @@ struct RegistrationStep4: View {
                         .textInputAutocapitalization(.never)
                         .keyboardType(.default)
                         .disableAutocorrection(true)
-                        .padding()
-                        .frame(width: 255.0, height: 45.0)
-                        .overlay( /// apply a rounded border
-                            RoundedRectangle(cornerRadius: 15)
-                                .stroke(Color("W2wLightBlueColor"), lineWidth: 2))
+                        .padding(EdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 16))
+                        .frame(width: 255, height: 45)
+                        .background(.white)
+                        .cornerRadius(12)
+                        .shadow(
+                            color: Color(red: 0.46, green: 0.54, blue: 0.71, opacity: 0.2), radius: 12, x: 3, y: 3
+                        )
                         .foregroundStyle(Color("W2wLightBlueColor"))
-                        .padding(.bottom, 25.0)
+//                        .padding()
+//                        .frame(width: 255.0, height: 45.0)
+//                        .overlay( /// apply a rounded border
+//                            RoundedRectangle(cornerRadius: 15)
+//                                .stroke(Color("W2wLightBlueColor"), lineWidth: 2))
+//                        .foregroundStyle(Color("W2wLightBlueColor"))
+//                        .padding(.bottom, 25.0)
                         
                         Text("Сколько подписчиков у Вашего бренда в запрещенной сети?")
                             .font(Font.custom("Manrope", size: 14))
@@ -66,6 +78,7 @@ struct RegistrationStep4: View {
                             .multilineTextAlignment(.leading)
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .fixedSize(horizontal: false, vertical: true)
+                            .padding(.top, 15)
                         
                         Text("Выберите один вариант")
                             .font(Font.custom("Manrope", size: 12))
@@ -74,22 +87,19 @@ struct RegistrationStep4: View {
                             .padding(.bottom, 24)
                             .multilineTextAlignment(.leading)
                             .frame(maxWidth: .infinity, alignment: .leading)
-                        
-                        ForEach(optionsSubs, id: \.self) { option in
-                            TableRow(text: option)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                            
-//                            if TableRow(text: option).isChecked {
-//                                print("\(option) On 1")
-//                            }
-                            
-                        }          
+                        ForEach(optionsSubs.indices, id: \.self) { index in
+                            HStack {
+                                CheckBoxView(checked: $checked[index], text: optionsSubs[index]) {
+                                    checkOnlyOne(at: index)
+                                }
+                            }
+                        }
                     }
                     .padding(.horizontal, 65.0)
                     //.frame(width: 358)
                     
 
-                    NavigationLink(destination: RegistrationStep5(brand: brand)) {
+                    NavigationLink(destination: RegistrationStep5()) {
                         Text("Далее")
                     }
                     .frame(width: geometry.size.width - 120, height: 45.0)
@@ -101,7 +111,7 @@ struct RegistrationStep4: View {
                     .padding(.top)
                     
                     Image("Vector")
-                        .padding(.top, 38.0)
+                        .padding(.top, 30.0)
                     
                     Spacer()
                 }
@@ -110,6 +120,11 @@ struct RegistrationStep4: View {
         }
         .navigationArrowLef()
         .background(Color(red: 248, green: 248, blue: 248))
+    }
+    private func checkOnlyOne(at index: Int) {
+        for i in checked.indices {
+            checked[i] = (i == index)
+        }
     }
 }
 

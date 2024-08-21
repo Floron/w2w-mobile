@@ -16,7 +16,7 @@ struct RegistrationStep2: View {
                 
                 VStack {
                     
-                    Spacer()
+                   // Spacer()
                     
                     Text("Отлично!")
                         .foregroundColor(Color("W2wBlueColor"))
@@ -45,26 +45,27 @@ struct RegistrationStep2: View {
                                 .font(Font.custom("Manrope", size: 14))
                                 .tracking(0.28)
                                 .foregroundColor(Color("W2wBlueColor"))
+                                
                             Spacer()
                         }
                         
                         TextField(text: $brand.fullname.animation()) {
                             Text("Имя и фамилия")
-                                .font(Font.custom("Manrope", size: 14).weight(.light))
-                                .lineSpacing(20)
-                                .foregroundColor(Color("W2wLightBlueColor"))
+                                .font(Font.custom("Manrope", size: 12).weight(.medium))
+                                .tracking(0.24)
+                                .foregroundColor(.w2WLightBlue)
                         }
-                        .textInputAutocapitalization(.never)
+                        .textInputAutocapitalization(.words)
                         .keyboardType(.default)
                         .disableAutocorrection(true)
-                        .padding()
-                        .frame(width: 255.0, height: 45.0)
-                        .overlay( /// apply a rounded border
-                            RoundedRectangle(cornerRadius: 15)
-                                .stroke(Color("W2wLightBlueColor"), lineWidth: 2))
+                        .padding(EdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 16))
+                        .frame(width: 255, height: 45)
+                        .background(.white)
+                        .cornerRadius(12)
+                        .shadow(
+                            color: Color(red: 0.46, green: 0.54, blue: 0.71, opacity: 0.2), radius: 12, x: 3, y: 3
+                        )
                         .foregroundStyle(Color("W2wLightBlueColor"))
-                        .padding(.bottom, 25.0)
-                        
                        
                         HStack {
                             Text("Ваш никнэйм в Телеграмм")
@@ -73,6 +74,7 @@ struct RegistrationStep2: View {
                                 .foregroundColor(Color("W2wBlueColor"))
                             Spacer()
                         }
+                        .padding(.top, 25)
                         
                         TextField(text: $brand.tgNickname.animation()) {
                             Text("@nic")
@@ -83,11 +85,18 @@ struct RegistrationStep2: View {
                         .textInputAutocapitalization(.never)
                         .keyboardType(.default)
                         .disableAutocorrection(true)
-                        .padding()
-                        .frame(width: 255.0, height: 45.0)
-                        .overlay( /// apply a rounded border
-                            RoundedRectangle(cornerRadius: 15)
-                                .stroke(Color("W2wLightBlueColor"), lineWidth: 2))
+                        .padding(EdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 16))
+                        .frame(width: 255, height: 45)
+                        .background(.white)
+                        .cornerRadius(12)
+                        .shadow(
+                            color: Color(red: 0.46, green: 0.54, blue: 0.71, opacity: 0.2), radius: 12, x: 3, y: 3
+                        )
+//                        .padding()
+//                        .frame(width: 255.0, height: 45.0)
+//                        .overlay( /// apply a rounded border
+//                            RoundedRectangle(cornerRadius: 15)
+//                                .stroke(Color("W2wLightBlueColor"), lineWidth: 2))
                         .foregroundStyle(Color("W2wLightBlueColor"))
                       
                         
@@ -108,7 +117,7 @@ struct RegistrationStep2: View {
                     
                     
                     Image("Vector")
-                        .padding(.top, 38.0)
+                        .padding(.top, 30.0)
                     
                     Spacer()
  

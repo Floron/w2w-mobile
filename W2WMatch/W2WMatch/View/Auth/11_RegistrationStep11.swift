@@ -29,7 +29,6 @@ struct RegistrationStep11: View {
                     .foregroundColor(Color("W2wBlueColor"))
                     .font(.custom("PoiretOne-Regular", size: 34))
                     .multilineTextAlignment(.center)
-                    .padding(.top, 50)
                     .frame(width: geometry.size.width - 80)
                     .frame(maxWidth: .infinity)
                     .fixedSize(horizontal: false, vertical: true)
@@ -43,11 +42,12 @@ struct RegistrationStep11: View {
                     .multilineTextAlignment(.leading)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .fixedSize(horizontal: false, vertical: true)
+                
                 Text("Выберите один или несколько вариантов")
                     .font(Font.custom("Manrope", size: 12))
                     .tracking(0.28)
                     .foregroundColor(Color("SecondaryText"))
-                    .padding(.bottom, 24)
+                    .padding(.bottom, 8)
                     .multilineTextAlignment(.leading)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
@@ -70,7 +70,9 @@ struct RegistrationStep11: View {
                 .padding(.top)
                 
                 Image("Vector")
-                    .padding(.top, 20)
+                    .padding(.top, 30)
+                
+                Spacer()
             }
             .frame(width: geometry.size.width - 120, height: geometry.size.height)
             .frame(maxWidth: .infinity, maxHeight: .infinity)

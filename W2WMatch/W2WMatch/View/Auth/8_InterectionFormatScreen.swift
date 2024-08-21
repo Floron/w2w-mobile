@@ -64,7 +64,9 @@ struct InterectionFormatScreen: View {
                 .padding(.top)
                 
                 Image("Vector")
-                    .padding(.top, 20)
+                    .padding(.top, 30)
+                
+                Spacer()
             }
             
             .frame(width: geometry.size.width - 120, height: geometry.size.height)

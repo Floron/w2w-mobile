@@ -23,11 +23,10 @@ struct PersonPhotoScreen: View {
                     .foregroundColor(Color("W2wBlueColor"))
                     .font(.custom("PoiretOne-Regular", size: 34))
                     .multilineTextAlignment(.center)
-                    .padding(.top, 50)
                     .frame(width: geometry.size.width - 80)
                     .frame(maxWidth: .infinity)
                     .fixedSize(horizontal: false, vertical: true)
-                    .padding(.bottom, 18)
+                    .padding(.bottom, 50)
                 
                 Text("Загрузите, пожалуйста, ваше фото")
                     .font(Font.custom("Manrope", size: 14))

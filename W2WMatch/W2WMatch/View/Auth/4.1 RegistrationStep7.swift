@@ -8,12 +8,18 @@
 import SwiftUI
 
 struct RegistrationStep7: View {
-
+    
     @State var brand = CreateBrandRequestBody()
+    @State private var checked: [Bool]
+    
+    
     
     let optionsPresenceType = ["Online",
                                "Offline",
                                "Оба варианта"]
+    init() {
+        _checked = State(initialValue: [Bool](repeating: false, count: optionsPresenceType.count))
+    }
     
     var body: some View {
         GeometryReader { geometry in
@@ -26,12 +32,12 @@ struct RegistrationStep7: View {
                         .foregroundColor(Color("W2wBlueColor"))
                         .font(.custom("PoiretOne-Regular", size: 34))
                         .multilineTextAlignment(.center)
-                        
-                     
+                    
+                    
                     Spacer()
                     
                     VStack {
-
+                        
                         Text("У вас online или offline бренд?")
                             .font(Font.custom("Manrope", size: 14))
                             .tracking(0.28)
@@ -49,13 +55,12 @@ struct RegistrationStep7: View {
                             .multilineTextAlignment(.leading)
                             .frame(maxWidth: .infinity, alignment: .leading)
                         
-                        ForEach(optionsPresenceType, id: \.self) { option in
-                            TableRow(text: option)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                            
-//                            if TableRow(text: option).isChecked {
-//                                print("\(option) On 1")
-//                            }
+                        ForEach(optionsPresenceType.indices, id: \.self) { index in
+                            HStack {
+                                CheckBoxView(checked: $checked[index], text: optionsPresenceType[index]) {
+                                    checkOnlyOne(at: index)
+                                }
+                            }
                         }
                         
                         
@@ -84,7 +89,7 @@ struct RegistrationStep7: View {
                             RoundedRectangle(cornerRadius: 15)
                                 .stroke(Color("W2wLightBlueColor"), lineWidth: 2))
                         .foregroundStyle(Color("W2wLightBlueColor"))
-                      
+                        
                         
                     }
                     .padding(.horizontal, 65.0)
@@ -114,8 +119,15 @@ struct RegistrationStep7: View {
         .navigationArrowLef()
         .background(Color(red: 248, green: 248, blue: 248))
     }
+    private func checkOnlyOne(at index: Int) {
+        for i in checked.indices {
+            checked[i] = (i == index)
+        }
+    }
 }
 
 #Preview {
     RegistrationStep7()
 }
+
+

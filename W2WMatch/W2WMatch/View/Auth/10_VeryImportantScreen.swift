@@ -24,11 +24,10 @@ struct VeryImportantScreen: View {
                     .foregroundColor(Color("W2wBlueColor"))
                     .font(.custom("PoiretOne-Regular", size: 34))
                     .multilineTextAlignment(.center)
-                    .padding(.top, 50)
                     .frame(width: geometry.size.width - 80)
                     .frame(maxWidth: .infinity)
                     .fixedSize(horizontal: false, vertical: true)
-                    .padding(.bottom, 18)
+                    .padding(.bottom, 50)
                 
                 Text("Цель коллаборации")
                     .font(Font.custom("Manrope", size: 14))
@@ -38,6 +37,7 @@ struct VeryImportantScreen: View {
                     .multilineTextAlignment(.leading)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .fixedSize(horizontal: false, vertical: true)
+                
                 Text("Выберите один или несколько вариантов")
                     .font(Font.custom("Manrope", size: 12))
                     .tracking(0.28)
@@ -63,7 +63,9 @@ struct VeryImportantScreen: View {
                 .padding(.top)
                 
                 Image("Vector")
-                    .padding(.top, 20)
+                    .padding(.top, 30)
+                
+                Spacer()
             }
             .frame(width: geometry.size.width - 120, height: geometry.size.height)
             .frame(maxWidth: .infinity, maxHeight: .infinity)

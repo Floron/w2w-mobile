@@ -42,11 +42,18 @@ struct RegisterScreen: View {
                     .keyboardType(.emailAddress)
                     .disableAutocorrection(true)
                     .disabled(mainVm.registerPending)
-                    .padding()
-                    .frame(width: 255.0, height: 45.0)
-                    .overlay( /// apply a rounded border
-                        RoundedRectangle(cornerRadius: 15)
-                            .stroke(Color("W2wLightBlueColor"), lineWidth: 2))
+                    .padding(EdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 16))
+                    .frame(width: 255, height: 45)
+                    .background(.white)
+                    .cornerRadius(12)
+                    .shadow(
+                        color: Color(red: 0.46, green: 0.54, blue: 0.71, opacity: 0.2), radius: 12, x: 3, y: 3
+                    )
+//                    .padding()
+//                    .frame(width: 255.0, height: 45.0)
+//                    .overlay( /// apply a rounded border
+//                        RoundedRectangle(cornerRadius: 15)
+//                            .stroke(Color("W2wLightBlueColor"), lineWidth: 2))
                     .foregroundStyle(Color("W2wLightBlueColor"))
                     
                     TextField(text: $phone.animation()) {
@@ -58,12 +65,19 @@ struct RegisterScreen: View {
                     .textInputAutocapitalization(.never)
                     .keyboardType(.phonePad)
                     .disableAutocorrection(true)
-                    .disabled(mainVm.registerPending)
-                    .padding()
-                    .frame(width: 255.0, height: 45.0)
-                    .overlay( /// apply a rounded border
-                        RoundedRectangle(cornerRadius: 15)
-                            .stroke(Color("W2wLightBlueColor"), lineWidth: 2))
+                    .padding(EdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 16))
+                    .frame(width: 255, height: 45)
+                    .background(.white)
+                    .cornerRadius(12)
+                    .shadow(
+                        color: Color(red: 0.46, green: 0.54, blue: 0.71, opacity: 0.2), radius: 12, x: 3, y: 3
+                    )
+//                    .disabled(mainVm.registerPending)
+//                    .padding()
+//                    .frame(width: 255.0, height: 45.0)
+//                    .overlay( /// apply a rounded border
+//                        RoundedRectangle(cornerRadius: 15)
+//                            .stroke(Color("W2wLightBlueColor"), lineWidth: 2))
                     .foregroundStyle(Color("W2wLightBlueColor"))
                     
                     SecureField(text: $password) {
@@ -75,11 +89,18 @@ struct RegisterScreen: View {
                     .textInputAutocapitalization(.never)
                     .disableAutocorrection(true)
                     .disabled(mainVm.registerPending)
-                    .padding()
-                    .frame(width: 255.0, height: 45.0)
-                    .overlay( /// apply a rounded border
-                        RoundedRectangle(cornerRadius: 15)
-                            .stroke(Color("W2wLightBlueColor"), lineWidth: 2))
+                    .padding(EdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 16))
+                    .frame(width: 255, height: 45)
+                    .background(.white)
+                    .cornerRadius(12)
+                    .shadow(
+                        color: Color(red: 0.46, green: 0.54, blue: 0.71, opacity: 0.2), radius: 12, x: 3, y: 3
+                    )
+//                    .padding()
+//                    .frame(width: 255.0, height: 45.0)
+//                    .overlay( /// apply a rounded border
+//                        RoundedRectangle(cornerRadius: 15)
+//                            .stroke(Color("W2wLightBlueColor"), lineWidth: 2))
                     .foregroundStyle(Color("W2wLightBlueColor"))
                     
                     
@@ -98,7 +119,7 @@ struct RegisterScreen: View {
                                                                        message: "Password lenght must be 4 or more characters")
                                 return
                             }
-                            mainVm.register(email: email, phone: phone, password: password)
+                            mainVm.register(email: email.lowercased(), phone: phone, password: password)
                         }
                         .disabled(mainVm.registerPending)
                         .frame(width: 255.0, height: 45.0)

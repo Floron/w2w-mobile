@@ -36,7 +36,7 @@ struct RegistrationStep8: View {
                             .multilineTextAlignment(.leading)
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .fixedSize(horizontal: false, vertical: true)
-                            .padding(.top, 48)
+                            .padding(.top, 50)
                         
                         TextField(text: $brand.missionStatement.animation()) {
                             Text("Ваш комментарий")
@@ -47,12 +47,20 @@ struct RegistrationStep8: View {
                         .textInputAutocapitalization(.never)
                         .keyboardType(.default)
                         .disableAutocorrection(true)
-                        .padding()
-                        .frame(width: 255.0, height: 45.0)
-                        .overlay( /// apply a rounded border
-                            RoundedRectangle(cornerRadius: 15)
-                                .stroke(Color("W2wLightBlueColor"), lineWidth: 2))
+                        .padding(EdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 16))
+                        .frame(width: 255, height: 45)
+                        .background(.white)
+                        .cornerRadius(12)
+                        .shadow(
+                            color: Color(red: 0.46, green: 0.54, blue: 0.71, opacity: 0.2), radius: 12, x: 3, y: 3
+                        )
                         .foregroundStyle(Color("W2wLightBlueColor"))
+//                        .padding()
+//                        .frame(width: 255.0, height: 45.0)
+//                        .overlay( /// apply a rounded border
+//                            RoundedRectangle(cornerRadius: 15)
+//                                .stroke(Color("W2wLightBlueColor"), lineWidth: 2))
+//                        .foregroundStyle(Color("W2wLightBlueColor"))
                         
                         Text("Расскажите, пожалуйста, в чем уникальность вашего продукта?")
                             .font(Font.custom("Manrope", size: 14))
@@ -73,12 +81,20 @@ struct RegistrationStep8: View {
                         .textInputAutocapitalization(.never)
                         .keyboardType(.default)
                         .disableAutocorrection(true)
-                        .padding()
-                        .frame(width: 255.0, height: 45.0)
-                        .overlay( /// apply a rounded border
-                            RoundedRectangle(cornerRadius: 15)
-                                .stroke(Color("W2wLightBlueColor"), lineWidth: 2))
+                        .padding(EdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 16))
+                        .frame(width: 255, height: 45)
+                        .background(.white)
+                        .cornerRadius(12)
+                        .shadow(
+                            color: Color(red: 0.46, green: 0.54, blue: 0.71, opacity: 0.2), radius: 12, x: 3, y: 3
+                        )
                         .foregroundStyle(Color("W2wLightBlueColor"))
+//                        .padding()
+//                        .frame(width: 255.0, height: 45.0)
+//                        .overlay( /// apply a rounded border
+//                            RoundedRectangle(cornerRadius: 15)
+//                                .stroke(Color("W2wLightBlueColor"), lineWidth: 2))
+//                        .foregroundStyle(Color("W2wLightBlueColor"))
                         
                         
                         
@@ -100,7 +116,7 @@ struct RegistrationStep8: View {
                     .padding(.top)
                     
                     Image("Vector")
-                        .padding(.top, 38.0)
+                        .padding(.top, 30.0)
                     
                     Spacer()
                 }

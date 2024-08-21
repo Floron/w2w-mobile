@@ -51,12 +51,20 @@ struct RegistrationStep10: View {
                         .textInputAutocapitalization(.never)
                         .keyboardType(.default)
                         .disableAutocorrection(true)
-                        .padding()
-                        .overlay( /// apply a rounded border
-                            RoundedRectangle(cornerRadius: 15)
-                        .stroke(Color("FrameRegistration"), lineWidth: 2))
-                        .foregroundStyle(Color("FrameRegistration"))
-                        .padding(.bottom, 25.0)
+                        .padding(EdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 16))
+                        .frame(width: 255, height: 45)
+                        .background(.white)
+                        .cornerRadius(12)
+                        .shadow(
+                            color: Color(red: 0.46, green: 0.54, blue: 0.71, opacity: 0.2), radius: 12, x: 3, y: 3
+                        )
+                        .foregroundStyle(Color("W2wLightBlueColor"))
+//                        .padding()
+//                        .overlay( /// apply a rounded border
+//                            RoundedRectangle(cornerRadius: 15)
+//                        .stroke(Color("FrameRegistration"), lineWidth: 2))
+//                        .foregroundStyle(Color("FrameRegistration"))
+//                        .padding(.bottom, 25.0)
 
                         Text("Готовы ли вы быть спикером прямого эфира или участвовать в публичном выступлении для резидентов?")
                             .font(Font.custom("Manrope", size: 14))
@@ -93,7 +101,7 @@ struct RegistrationStep10: View {
                     .padding(.top)
                     
                     Image("Vector")
-                        .padding(.top, 38.0)
+                        .padding(.top, 30.0)
                     
                     Spacer()
                 }

@@ -20,7 +20,7 @@ struct AboutYorselfScreen: View {
                     .foregroundColor(Color("W2wBlueColor"))
                     .font(.custom("PoiretOne-Regular", size: 34))
                     .multilineTextAlignment(.center)
-                    .padding(.bottom, 48)
+                    .padding(.bottom, 50)
 
                 Text("Расскажите нам о ядре Вашей целевовй аудитории")
                     .font(Font.custom("Manrope", size: 14))
@@ -39,11 +39,20 @@ struct AboutYorselfScreen: View {
                     .textInputAutocapitalization(.never)
                     .keyboardType(.default)
                     .disableAutocorrection(true)
-                    .padding()
-                    .overlay( /// apply a rounded border
-                        RoundedRectangle(cornerRadius: 15)
-                    .stroke(Color("FrameRegistration"), lineWidth: 2))
-                    .foregroundStyle(Color("FrameRegistration"))
+                    .padding(EdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 16))
+                    .frame(width: 125, height: 45)
+                    .background(.white)
+                    .cornerRadius(12)
+                    .shadow(
+                        color: Color(red: 0.46, green: 0.54, blue: 0.71, opacity: 0.2), radius: 12, x: 3, y: 3
+                    )
+                    .foregroundStyle(Color("W2wLightBlueColor"))
+//                    .padding()
+//                    .overlay( /// apply a rounded border
+//                        RoundedRectangle(cornerRadius: 15)
+//                    .stroke(Color("FrameRegistration"), lineWidth: 2))
+//                    .foregroundStyle(Color("FrameRegistration"))
+                    
                     TextField(text: $user.age.animation()) {
                         Text("Возраст")
                             .font(Font.custom("Manrope", size: 14).weight(.light))
@@ -54,14 +63,23 @@ struct AboutYorselfScreen: View {
                     .textInputAutocapitalization(.never)
                     .keyboardType(.default)
                     .disableAutocorrection(true)
-                    .padding()
-                    .overlay( /// apply a rounded border
-                        RoundedRectangle(cornerRadius: 15)
-                    .stroke(Color("FrameRegistration"), lineWidth: 2))
-                    .foregroundStyle(Color("FrameRegistration"))
+                    .padding(EdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 16))
+                    .frame(width: 125, height: 45)
+                    .background(.white)
+                    .cornerRadius(12)
+                    .shadow(
+                        color: Color(red: 0.46, green: 0.54, blue: 0.71, opacity: 0.2), radius: 12, x: 3, y: 3
+                    )
+                    .foregroundStyle(Color("W2wLightBlueColor"))
+//                    .padding()
+//                    .overlay( /// apply a rounded border
+//                        RoundedRectangle(cornerRadius: 15)
+//                    .stroke(Color("FrameRegistration"), lineWidth: 2))
+//                    .foregroundStyle(Color("FrameRegistration"))
 
                 }
                 .padding(.bottom, 8)
+                
                 HStack {
                     TextField(text: $user.incomeLevel.animation()) {
                         Text("Ур. дохода")
@@ -74,11 +92,19 @@ struct AboutYorselfScreen: View {
                     .textInputAutocapitalization(.never)
                     .keyboardType(.default)
                     .disableAutocorrection(true)
-                    .padding()
-                    .overlay( /// apply a rounded border
-                        RoundedRectangle(cornerRadius: 15)
-                    .stroke(Color("FrameRegistration"), lineWidth: 2))
-                    .foregroundStyle(Color("FrameRegistration"))
+                    .padding(EdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 16))
+                    .frame(width: 125, height: 45)
+                    .background(.white)
+                    .cornerRadius(12)
+                    .shadow(
+                        color: Color(red: 0.46, green: 0.54, blue: 0.71, opacity: 0.2), radius: 12, x: 3, y: 3
+                    )
+                    .foregroundStyle(Color("W2wLightBlueColor"))
+//                    .padding()
+//                    .overlay( /// apply a rounded border
+//                        RoundedRectangle(cornerRadius: 15)
+//                    .stroke(Color("FrameRegistration"), lineWidth: 2))
+//                    .foregroundStyle(Color("FrameRegistration"))
                     
                     TextField(text: $user.geographic.animation()) {
                         Text("ГЕО")
@@ -90,11 +116,19 @@ struct AboutYorselfScreen: View {
                     .textInputAutocapitalization(.never)
                     .keyboardType(.default)
                     .disableAutocorrection(true)
-                    .padding()
-                    .overlay( /// apply a rounded border
-                        RoundedRectangle(cornerRadius: 15)
-                    .stroke(Color("FrameRegistration"), lineWidth: 2))
-                    .foregroundStyle(Color("FrameRegistration"))
+                    .padding(EdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 16))
+                    .frame(width: 125, height: 45)
+                    .background(.white)
+                    .cornerRadius(12)
+                    .shadow(
+                        color: Color(red: 0.46, green: 0.54, blue: 0.71, opacity: 0.2), radius: 12, x: 3, y: 3
+                    )
+                    .foregroundStyle(Color("W2wLightBlueColor"))
+//                    .padding()
+//                    .overlay( /// apply a rounded border
+//                        RoundedRectangle(cornerRadius: 15)
+//                    .stroke(Color("FrameRegistration"), lineWidth: 2))
+//                    .foregroundStyle(Color("FrameRegistration"))
                 }
                 .padding(.bottom, 8)
                 
@@ -108,11 +142,19 @@ struct AboutYorselfScreen: View {
                 .textInputAutocapitalization(.never)
                 .keyboardType(.default)
                 .disableAutocorrection(true)
-                .padding()
-                .overlay( /// apply a rounded border
-                    RoundedRectangle(cornerRadius: 15)
-                .stroke(Color("FrameRegistration"), lineWidth: 2))
-                .foregroundStyle(Color("FrameRegistration"))
+                .padding(EdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 16))
+                .frame(width: 255, height: 45)
+                .background(.white)
+                .cornerRadius(12)
+                .shadow(
+                    color: Color(red: 0.46, green: 0.54, blue: 0.71, opacity: 0.2), radius: 12, x: 3, y: 3
+                )
+                .foregroundStyle(Color("W2wLightBlueColor"))
+//                .padding()
+//                .overlay( /// apply a rounded border
+//                    RoundedRectangle(cornerRadius: 15)
+//                .stroke(Color("FrameRegistration"), lineWidth: 2))
+//                .foregroundStyle(Color("FrameRegistration"))
 
                 NavigationLink(destination: InterectionFormatScreen(brand: brand)) {
                     Text("Далее")
@@ -131,9 +173,9 @@ struct AboutYorselfScreen: View {
                 }
                 
                 Image("Vector")
-                    .padding(.top, 38.0)
+                    .padding(.top, 30.0)
                 
-                //Spacer()
+                Spacer()
             }
             .frame(width: geometry.size.width - 120, height: geometry.size.height)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)

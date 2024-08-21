@@ -10,6 +10,7 @@ import SwiftUI
 struct RegistrationStep6: View {
 
     @State var brand = CreateBrandRequestBody()
+    @State private var checked: [Bool]
     
     let optionsCategory = ["Красота и здоровье",
                            "Товары для детей",
@@ -20,6 +21,10 @@ struct RegistrationStep6: View {
                            "Товары для дома",
                            "Фрилансеры / агентства",
                            "Инфлюенсеры / блогеры"]
+    
+    init() {
+        _checked = State(initialValue: [Bool](repeating: false, count: optionsCategory.count))
+    }
     
     var body: some View {
         GeometryReader { geometry in
@@ -55,21 +60,19 @@ struct RegistrationStep6: View {
                             .multilineTextAlignment(.leading)
                             .frame(maxWidth: .infinity, alignment: .leading)
                         
-                        ForEach(optionsCategory, id: \.self) { option in
-                            TableRow(text: option)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                            
-//                            if TableRow(text: option).isChecked {
-//                                print("\(option) On 1")
-//                            }
-                            
+                        ForEach(optionsCategory.indices, id: \.self) { index in
+                            HStack {
+                                CheckBoxView(checked: $checked[index], text: optionsCategory[index]) {
+                                    checkOnlyOne(at: index)
+                                }
+                            }
                         }
                     }
                     .padding(.horizontal, 65.0)
                     //.frame(width: 358)
                     
 
-                    NavigationLink(destination: RegistrationStep7(brand: brand)) {
+                    NavigationLink(destination: RegistrationStep7()) {
                         Text("Далее")
                     }
                     .frame(width: geometry.size.width - 120, height: 45.0)
@@ -90,6 +93,11 @@ struct RegistrationStep6: View {
         }
         .navigationArrowLef()
         .background(Color(red: 248, green: 248, blue: 248))
+    }
+    private func checkOnlyOne(at index: Int) {
+        for i in checked.indices {
+            checked[i] = (i == index)
+        }
     }
 }
 
