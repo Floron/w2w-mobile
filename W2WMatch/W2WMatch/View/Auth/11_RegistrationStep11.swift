@@ -10,6 +10,12 @@ import SwiftUI
 struct RegistrationStep11: View {
     
     @State var brand = CreateBrandRequestBody()
+    @State private var checked: [Bool]
+    
+    init(brand: CreateBrandRequestBody) {
+        _checked = State(initialValue: [Bool](repeating: false, count: collaborationInterest.count))
+        self.brand = brand
+    }
     
     let collaborationInterest = ["Я открыта к экспериментам и категория партнера мне не важна",
                                  "Образование и эксперты",
@@ -52,10 +58,19 @@ struct RegistrationStep11: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
                 ScrollView {
-                    ForEach(collaborationInterest, id: \.self) { option in
-                        TableRow(text: option)
-                            .frame(maxWidth: .infinity, alignment: .leading)
+//                    ForEach(collaborationInterest, id: \.self) { option in
+//                        TableRow(text: option) {}
+//                            .frame(maxWidth: .infinity, alignment: .leading)
+//                    }
+                    
+                    ForEach(collaborationInterest.indices, id: \.self) { index in
+                        HStack {
+                            CheckBoxView(checked: $checked[index], text: collaborationInterest[index]) {
+                                checked[index].toggle()
+                            }
+                        }
                     }
+                    
                 }.scrollIndicators(.hidden)
                 
                 NavigationLink(destination: LastAuthScreen(brand: brand)) {
@@ -68,6 +83,19 @@ struct RegistrationStep11: View {
                         .fill(Color("W2wLightBlueColor"))
                 }
                 .padding(.top)
+                .onTapGesture {
+                    for (index, value) in checked.enumerated() {
+                        if value {
+                            if brand.collaborationInterest[0].text == "" {
+                                brand.collaborationInterest[0] = RequestQuestionType(text: collaborationInterest[index], question: 19)
+                            } else {
+                                brand.collaborationInterest.append(RequestQuestionType(text: collaborationInterest[index], question: 19))
+                            }
+                        }
+                    }
+                    
+                    print(brand)
+                }
                 
                 Image("Vector")
                     .padding(.top, 30)
@@ -77,12 +105,12 @@ struct RegistrationStep11: View {
             .frame(width: geometry.size.width - 120, height: geometry.size.height)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
-        .navigationArrowLef()
+        .navigationArrowLeft()
         .background(Color(red: 248, green: 248, blue: 248))
     }
 }
 
 
 #Preview {
-    RegistrationStep11()
+    RegistrationStep11(brand: CreateBrandRequestBody())
 }

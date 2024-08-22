@@ -11,8 +11,16 @@ struct InterectionFormatScreen: View {
     //@State var user = AutorizedUser()
     @State var brand = CreateBrandRequestBody()
     
+    @State private var checked: [Bool]
+    
+    init(brand: CreateBrandRequestBody) {
+        _checked = State(initialValue: [Bool](repeating: false, count: options.count))
+        self.brand = brand
+    }
+    
     let options = ["Не определилась с форматом, но готова к обсуждению", 
-                   "Совместный прямой эфир", "Совместный прямой reels",
+                   "Совместный прямой эфир", 
+                   "Совместный прямой reels",
                    "Совместный прямой пост",
                    "Выпустить совместный продукт",
                    "Провести совместно мероприятие"]
@@ -47,10 +55,22 @@ struct InterectionFormatScreen: View {
                     .multilineTextAlignment(.leading)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
-                ForEach(options, id: \.self) { option in
-                    TableRow(text: option)
-                        .frame(maxWidth: .infinity, alignment: .leading)
+                ForEach(options.indices, id: \.self) { index in
+                    HStack {
+                        CheckBoxView(checked: $checked[index], text: options[index]) {
+                            checked[index].toggle()
+                        }
+                    }
                 }
+                
+//                ForEach(options, id: \.self) { option in
+//                    TableRow(text: option) {
+//                        //if TableRow(text: option).isChecked {
+//                            print(option)
+//                       // }
+//                    }.frame(maxWidth: .infinity, alignment: .leading)
+//                }
+                
                 
                 NavigationLink(destination: RegistrationStep10(brand: brand)) {
                     Text("Далее")
@@ -62,6 +82,21 @@ struct InterectionFormatScreen: View {
                         .fill(Color("W2wLightBlueColor"))
                 }
                 .padding(.top)
+                .onTapGesture {
+                    for (index, value) in checked.enumerated() {
+                        if value {
+                            //print(options[index])
+                            
+                            if brand.formats[0].text == "" {
+                                brand.formats[0] = RequestQuestionType(text: options[index], question: 17)
+                            } else {
+                                brand.formats.append(RequestQuestionType(text: options[index], question: 17))
+                            }
+                        }
+                    }
+                    
+                    //print(brand.formats)
+                }
                 
                 Image("Vector")
                     .padding(.top, 30)
@@ -72,14 +107,14 @@ struct InterectionFormatScreen: View {
             .frame(width: geometry.size.width - 120, height: geometry.size.height)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
-        .navigationArrowLef()
+        .navigationArrowLeft()
         .background(Color(red: 248, green: 248, blue: 248))
     }
 }
 
 
 #Preview {
-    InterectionFormatScreen()
+    InterectionFormatScreen(brand: CreateBrandRequestBody())
 }
 
 

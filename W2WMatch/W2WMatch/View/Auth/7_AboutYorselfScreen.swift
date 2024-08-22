@@ -180,7 +180,7 @@ struct AboutYorselfScreen: View {
             .frame(width: geometry.size.width - 120, height: geometry.size.height)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
-        .navigationArrowLef()
+        .navigationArrowLeft()
         .background(Color(red: 248, green: 248, blue: 248))
     }
 }

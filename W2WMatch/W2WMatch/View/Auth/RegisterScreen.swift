@@ -57,7 +57,7 @@ struct RegisterScreen: View {
                     .foregroundStyle(Color("W2wLightBlueColor"))
                     
                     TextField(text: $phone.animation()) {
-                        Text("Номер телефона")
+                        Text("Номер телефона (+7)")
                             .font(Font.custom("Manrope", size: 14).weight(.light))
                             .lineSpacing(20)
                             .foregroundColor(Color("W2wLightBlueColor"))
@@ -169,7 +169,7 @@ struct RegisterScreen: View {
                 .frame(width: geometry.size.width, height: geometry.size.height)
             }
         }
-        .navigationArrowLef()
+        .navigationArrowLeft()
         .background(Color.white.ignoresSafeArea())
         .alert(item: $mainVm.alert) { alert in
             alert.alert()

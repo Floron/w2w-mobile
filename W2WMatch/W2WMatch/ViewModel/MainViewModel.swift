@@ -13,12 +13,11 @@ class MainViewModel: ObservableObject {
     // показ экранов
     @Published var showAuthContainer = true
     @Published var successfullRegistration = false
-    //@Published var navigateToNextView: Bool = false
  
     @Published var loginPending = false
     @Published var registerPending = false
     
-    //@Published var user: AutorizedUser?
+    
     
     // для проверки
     @Published var brandAuthBody = CreateBrandRequestBody(category: RequestQuestionType(text: "Красота и здоровье", question: 4),
@@ -95,7 +94,7 @@ class MainViewModel: ObservableObject {
         }
     }
     
-    func register(email: String, phone: String , password: String) {
+    func register(email: String, phone: String, password: String) {
         withAnimation {
             registerPending = true
         }
@@ -128,13 +127,15 @@ class MainViewModel: ObservableObject {
     
     func createBrand(authBody: CreateBrandRequestBody) {
         print("create Brand called")
+        //print(authBody)
         DispatchQueue.global(qos: .userInitiated).async {
             Requester.shared.brandCreate(authBody: authBody) { [self] result in
                 print("create Brand response: \(result)")
                
                 switch result {
                 case .success(let brand):
-                    print(brand)
+                    self.successfullRegistration = false
+                    //print(brand)
                 case .serverError(let err):
                     alert = IdentifiableAlert.buildForError(id: "devs_server_err", message: Errors.messageFor(err: err.message))
                 case .networkError(_):
@@ -144,7 +145,7 @@ class MainViewModel: ObservableObject {
                 }
             }
         }
-        self.successfullRegistration = false
+        
     }
     
     

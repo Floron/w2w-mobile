@@ -9,12 +9,8 @@ import SwiftUI
 
 struct LogoLoadScreen: View {
     let brandView = BrandPictureSelecterView(photoItem: GalleryItem())
-    //var photoData: Data?
     @State private var navigateToNextView = false
-    //@State var text = ""
-    //@State var user = AutorizedUser()
     @State var brand = CreateBrandRequestBody()
-    //@EnvironmentObject var mainVM: MainViewModel
     
     var body: some View {
         GeometryReader { geometry in
@@ -46,13 +42,8 @@ struct LogoLoadScreen: View {
                 
                 Button("Далее") {
                     if let data = brandView.photoItem.PhotoData {
-                        print("Что то есть")
-                        //let string1 = data.base64EncodedString()
                         guard let stringFromData = data.convertingDataToBase64String else { return }
-                        //let str = mainVM.handleImageNavigation(photoData: data)
-
-                        print("base 64 string: ", stringFromData.count)
-                        
+                    
                         brand.logo = stringFromData
                         
                         self.navigateToNextView = true
@@ -76,7 +67,7 @@ struct LogoLoadScreen: View {
             .frame(width: geometry.size.width - 120, height: geometry.size.height)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
-        .navigationArrowLef()
+        .navigationArrowLeft()
         .background(Color(red: 248, green: 248, blue: 248))
     }
 }

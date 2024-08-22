@@ -8,14 +8,18 @@
 import SwiftUI
 
 struct TableRow: View {
-    @State private var isChecked: Bool = false
+    @State var isChecked: Bool = false
     var text: String
+    var onToggle: () -> Void
     
     var body: some View {
         HStack {
             Toggle("", isOn: $isChecked)
                 .toggleStyle(CheckBoxToggelStyle())
                 .padding(.leading, 0)
+                .onTapGesture {
+                    self.onToggle()
+                }
             
                 Text(text)
                     .foregroundColor(Color("W2wBlueColor"))
@@ -56,5 +60,7 @@ struct CheckBoxToggelStyle: ToggleStyle {
 }
 
 #Preview {
-    TableRow(text: "ddddd")
+    TableRow(text: "ddddd"){
+        
+    }
 }

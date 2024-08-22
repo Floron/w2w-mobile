@@ -17,8 +17,9 @@ struct RegistrationStep4: View {
                        "100.000 - 500.000",
                        "500.000+"]
     
-    init() {
+    init(brand: CreateBrandRequestBody) {
         _checked = State(initialValue: [Bool](repeating: false, count: optionsSubs.count))
+        self.brand = brand
     }
     
     var body: some View {
@@ -87,10 +88,13 @@ struct RegistrationStep4: View {
                             .padding(.bottom, 24)
                             .multilineTextAlignment(.leading)
                             .frame(maxWidth: .infinity, alignment: .leading)
+                        
                         ForEach(optionsSubs.indices, id: \.self) { index in
                             HStack {
                                 CheckBoxView(checked: $checked[index], text: optionsSubs[index]) {
                                     checkOnlyOne(at: index)
+                                    brand.subsCount = RequestQuestionType(text: optionsSubs[index], question: 10)
+                                    //print(brand.subsCount)
                                 }
                             }
                         }
@@ -99,7 +103,7 @@ struct RegistrationStep4: View {
                     //.frame(width: 358)
                     
 
-                    NavigationLink(destination: RegistrationStep5()) {
+                    NavigationLink(destination: RegistrationStep5(brand: brand)) {
                         Text("Далее")
                     }
                     .frame(width: geometry.size.width - 120, height: 45.0)
@@ -118,7 +122,7 @@ struct RegistrationStep4: View {
                 .frame(width: geometry.size.width, height: geometry.size.height)
             }
         }
-        .navigationArrowLef()
+        .navigationArrowLeft()
         .background(Color(red: 248, green: 248, blue: 248))
     }
     private func checkOnlyOne(at index: Int) {
@@ -129,5 +133,5 @@ struct RegistrationStep4: View {
 }
 
 #Preview {
-    RegistrationStep4()
+    RegistrationStep4(brand: CreateBrandRequestBody())
 }

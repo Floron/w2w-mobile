@@ -135,7 +135,7 @@ struct RegistrationStep3: View {
                     //.frame(width: 358)
                     
 
-                    NavigationLink(destination: RegistrationStep4()) {
+                    NavigationLink(destination: RegistrationStep4(brand: brand)) {
                         Text("Далее")
                     }
                     .frame(width: geometry.size.width - 120, height: 45.0)
@@ -154,7 +154,7 @@ struct RegistrationStep3: View {
                 .frame(width: geometry.size.width, height: geometry.size.height)
             }
         }
-        .navigationArrowLef()
+        .navigationArrowLeft()
         .background(Color(red: 248, green: 248, blue: 248))
     }
 }

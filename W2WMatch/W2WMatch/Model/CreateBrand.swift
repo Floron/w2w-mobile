@@ -9,14 +9,14 @@ import Foundation
 
 // MARK: - CreateBrandRequestBody
 struct CreateBrandRequestBody: Codable {
-    var category = RequestQuestionType()                // доделать в RegistrationStep6. question = 4
-    var presenceType = RequestQuestionType()            // доделать в RegistrationStep7. question = 7
-    var publicSpeaker = RequestQuestionType()           // доделать в RegistrationStep10. question = 9
-    var subsCount = RequestQuestionType()               // доделать в RegistrationStep4. question = 10
-    var avgBill = RequestQuestionType()                 // доделать в RegistrationStep5. question = 11
-    var goals = [RequestQuestionType()]                 // доделать в VeryImportantScreen. question = 18
-    var formats = [RequestQuestionType()]               // доделать в InterectionFormatScreen. question = 17
-    var collaborationInterest = [RequestQuestionType()] // доделать в RegistrationStep11. question = 19
+    var category = RequestQuestionType()
+    var presenceType = RequestQuestionType()
+    var publicSpeaker = RequestQuestionType()
+    var subsCount = RequestQuestionType()
+    var avgBill = RequestQuestionType()
+    var goals = [RequestQuestionType()]
+    var formats = [RequestQuestionType()]
+    var collaborationInterest = [RequestQuestionType()]
     var tgNickname = ""              // done
     var brandNamePos = ""           // done
     var instBrandURL = ""           // done

@@ -12,13 +12,13 @@ struct RegistrationStep7: View {
     @State var brand = CreateBrandRequestBody()
     @State private var checked: [Bool]
     
-    
-    
     let optionsPresenceType = ["Online",
                                "Offline",
                                "Оба варианта"]
-    init() {
+    
+    init(brand: CreateBrandRequestBody) {
         _checked = State(initialValue: [Bool](repeating: false, count: optionsPresenceType.count))
+        self.brand = brand
     }
     
     var body: some View {
@@ -59,6 +59,7 @@ struct RegistrationStep7: View {
                             HStack {
                                 CheckBoxView(checked: $checked[index], text: optionsPresenceType[index]) {
                                     checkOnlyOne(at: index)
+                                    brand.presenceType = RequestQuestionType(text: optionsPresenceType[index], question: 7)
                                 }
                             }
                         }
@@ -116,7 +117,7 @@ struct RegistrationStep7: View {
                 .frame(width: geometry.size.width, height: geometry.size.height)
             }
         }
-        .navigationArrowLef()
+        .navigationArrowLeft()
         .background(Color(red: 248, green: 248, blue: 248))
     }
     private func checkOnlyOne(at index: Int) {
@@ -127,7 +128,7 @@ struct RegistrationStep7: View {
 }
 
 #Preview {
-    RegistrationStep7()
+    RegistrationStep7(brand: CreateBrandRequestBody())
 }
 
 

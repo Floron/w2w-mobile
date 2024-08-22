@@ -10,9 +10,15 @@ import SwiftUI
 struct RegistrationStep10: View {
 
     @State var brand = CreateBrandRequestBody()
+    @State private var checked: [Bool]
     
     let optionsPublicSpeaker = ["Да",
                                 "Нет"]
+    
+    init(brand: CreateBrandRequestBody) {
+        _checked = State(initialValue: [Bool](repeating: false, count: optionsPublicSpeaker.count))
+        self.brand = brand
+    }
     
     var body: some View {
         GeometryReader { geometry in
@@ -76,12 +82,21 @@ struct RegistrationStep10: View {
                             .fixedSize(horizontal: false, vertical: true)
                             .padding(.top, 8)
                         
-                        ForEach(optionsPublicSpeaker, id: \.self) { option in
-                            TableRow(text: option)
-                                .frame(maxWidth: .infinity, alignment: .leading)
+//                        ForEach(optionsPublicSpeaker, id: \.self) { option in
+//                            TableRow(text: option)
+//                            {}
+//                                .frame(maxWidth: .infinity, alignment: .leading)
+//                        }
+                        
+                        ForEach(optionsPublicSpeaker.indices, id: \.self) { index in
+                            HStack {
+                                CheckBoxView(checked: $checked[index], text: optionsPublicSpeaker[index]) {
+                                    checkOnlyOne(at: index)
+                                    //CheckBoxView().checkOnlyOne(at: index, checked: &checked)
+                                    brand.publicSpeaker = RequestQuestionType(text: optionsPublicSpeaker[index], question: 9)
+                                }
+                            }
                         }
-                        
-                        
                         
                     }
                     .padding(.horizontal, 65.0)
@@ -108,11 +123,17 @@ struct RegistrationStep10: View {
                 .frame(width: geometry.size.width, height: geometry.size.height)
             }
         }
-        .navigationArrowLef()
+        .navigationArrowLeft()
         .background(Color(red: 248, green: 248, blue: 248))
+    }
+    
+    private func checkOnlyOne(at index: Int) {
+        for i in checked.indices {
+            checked[i] = (i == index)
+        }
     }
 }
 
 #Preview {
-    RegistrationStep10()
+    RegistrationStep10(brand: CreateBrandRequestBody())
 }

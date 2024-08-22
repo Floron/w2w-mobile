@@ -9,9 +9,6 @@ import SwiftUI
 
 struct PersonPhotoScreen: View {
     let brandView = BrandPictureSelecterView(photoItem: GalleryItem())
-    //var photoData: Data?
-    //@State var text = ""
-    //@State var user = AutorizedUser()
     @State var brand = CreateBrandRequestBody()
     @EnvironmentObject var mainVM: MainViewModel
    
@@ -42,18 +39,37 @@ struct PersonPhotoScreen: View {
                 Button("Готово") {
 
                     if let data = brandView.photoItem.PhotoData {
-                        print("Что то есть")
-
                         guard let stringFromData = data.convertingDataToBase64String else { return }
 
-                        print("base 64 string: ", stringFromData.count)
-                        
                         brand.photo = stringFromData
-                        
+                        print(brand.logo.count)
+                        print(brand.photo.count)
+                        print(brand.productPhoto.count)
+                        print(brand.targetAudience)
+                        print(brand.avgBill)
+                        print(brand.brandNamePos)
+                        print(brand.brandSiteURL)
+                        print(brand.businessGroup)
+                        print(brand.category)
+                        print(brand.collaborationInterest)
+                        print(brand.formats)
+                        print(brand.fullname)
+                        print(brand.goals)
+                        print(brand.instBrandURL)
+                        print(brand.missionStatement)
+                        print(brand.presenceType)
+                        print(brand.problemSolving)
+                        print(brand.productDescription)
+                        print(brand.publicSpeaker)
+                        print(brand.subsCount)
+                        print(brand.tgNickname)
+                        print(brand.topics)
+                        print(brand.uniqueProductIs)
+                       
                         // Включить после тестов
-                        //mainVM.createBrand(authBody: brand)
+                        mainVM.createBrand(authBody: brand)
                         // Выключить после тестов
-                        mainVM.successfullRegistration = false
+                        //mainVM.successfullRegistration = false
                     } else {
                         // allert
                         print("Фото не выбрано")
@@ -75,7 +91,7 @@ struct PersonPhotoScreen: View {
             .frame(width: geometry.size.width - 120, height: geometry.size.height)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
-        .navigationArrowLef()
+        .navigationArrowLeft()
         .background(Color(red: 248, green: 248, blue: 248))
     }
 }

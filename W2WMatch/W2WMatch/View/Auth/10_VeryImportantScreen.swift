@@ -10,6 +10,12 @@ import SwiftUI
 struct VeryImportantScreen: View {
     
     @State var brand = CreateBrandRequestBody()
+    @State private var checked: [Bool]
+    
+    init(brand: CreateBrandRequestBody) {
+        _checked = State(initialValue: [Bool](repeating: false, count: optionsGoals.count))
+        self.brand = brand
+    }
     
     let optionsGoals = ["Рост продаж",
                         "Новая аудитория и охваты в соцсетях",
@@ -46,9 +52,19 @@ struct VeryImportantScreen: View {
                     .multilineTextAlignment(.leading)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
-                ForEach(optionsGoals, id: \.self) { option in
-                    TableRow(text: option)
-                        .frame(maxWidth: .infinity, alignment: .leading)
+//                ForEach(optionsGoals, id: \.self) { option in
+//                    TableRow(text: option) {
+//                        
+//                    }
+//                    .frame(maxWidth: .infinity, alignment: .leading)
+//                }
+                
+                ForEach(optionsGoals.indices, id: \.self) { index in
+                    HStack {
+                        CheckBoxView(checked: $checked[index], text: optionsGoals[index]) {
+                            checked[index].toggle()
+                        }
+                    }
                 }
                 
                 NavigationLink(destination: RegistrationStep11(brand: brand)) {
@@ -61,6 +77,21 @@ struct VeryImportantScreen: View {
                         .fill(Color("W2wLightBlueColor"))
                 }
                 .padding(.top)
+                .onTapGesture {
+                    for (index, value) in checked.enumerated() {
+                        if value {
+                            print(optionsGoals[index])
+                            
+                            if brand.goals[0].text == "" {
+                                brand.goals[0] = RequestQuestionType(text: optionsGoals[index], question: 18)
+                            } else {
+                                brand.goals.append(RequestQuestionType(text: optionsGoals[index], question: 18))
+                            }
+                        }
+                    }
+                    
+                    print(brand.goals)
+                }
                 
                 Image("Vector")
                     .padding(.top, 30)
@@ -70,14 +101,14 @@ struct VeryImportantScreen: View {
             .frame(width: geometry.size.width - 120, height: geometry.size.height)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
-        .navigationArrowLef()
+        .navigationArrowLeft()
         .background(Color(red: 248, green: 248, blue: 248))
     }
 }
 
 
 #Preview {
-    VeryImportantScreen()
+    VeryImportantScreen(brand: CreateBrandRequestBody())
 }
 
 

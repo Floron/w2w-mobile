@@ -18,8 +18,9 @@ struct RegistrationStep5: View {
                           "100.000 - 500.000",
                           "500.000+"]
     
-    init() {
+    init(brand: CreateBrandRequestBody) {
         _checked = State(initialValue: [Bool](repeating: false, count: optionsAvgBill.count))
+        self.brand = brand
     }
     
     var body: some View {
@@ -60,6 +61,7 @@ struct RegistrationStep5: View {
                             HStack {
                                 CheckBoxView(checked: $checked[index], text: optionsAvgBill[index]) {
                                     checkOnlyOne(at: index)
+                                    brand.avgBill = RequestQuestionType(text: optionsAvgBill[index], question: 11)
                                 }
                             }
                         }
@@ -68,7 +70,7 @@ struct RegistrationStep5: View {
                     //.frame(width: 358)
                     
                     
-                    NavigationLink(destination: RegistrationStep6()) {
+                    NavigationLink(destination: RegistrationStep6(brand: brand)) {
                         Text("Далее")
                     }
                     .frame(width: geometry.size.width - 120, height: 45.0)
@@ -87,7 +89,7 @@ struct RegistrationStep5: View {
                 .frame(width: geometry.size.width, height: geometry.size.height)
             }
         }
-        .navigationArrowLef()
+        .navigationArrowLeft()
         .background(Color(red: 248, green: 248, blue: 248))
     }
     private func checkOnlyOne(at index: Int) {
@@ -98,5 +100,5 @@ struct RegistrationStep5: View {
 }
 
 #Preview {
-    RegistrationStep5()
+    RegistrationStep5(brand: CreateBrandRequestBody())
 }

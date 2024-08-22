@@ -14,6 +14,7 @@ struct CheckBoxView: View {
                     .onTapGesture {
                         self.onToggle()
                     }
+                
                 Text(text)
                     .foregroundColor(Color("W2wBlueColor"))
                     .padding(.leading, 0)
@@ -30,6 +31,12 @@ struct CheckBoxView: View {
                 .fill(Color.white)
                 .shadow(color: Color.gray.opacity(0.2), radius: 10, x: 0, y: 2)
             )
-        }
+    }
+    
+//    func checkOnlyOne(at index: Int, checked: inout [Bool]) {
+//        for i in checked.indices {
+//            checked[i] = (i == index)
+//        }
+//    }
     
 }

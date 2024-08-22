@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 
-struct NavigationArrowLef: ViewModifier {
+struct NavigationArrowLeft: ViewModifier {
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
@@ -30,8 +30,8 @@ struct NavigationArrowLef: ViewModifier {
 }
 
 extension View {
-    func navigationArrowLef() -> some View {
-        modifier(NavigationArrowLef())
+    func navigationArrowLeft() -> some View {
+        modifier(NavigationArrowLeft())
     }
 }
 
