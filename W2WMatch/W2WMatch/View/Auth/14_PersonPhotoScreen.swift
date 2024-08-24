@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PersonPhotoScreen: View {
-    let brandView = BrandPictureSelecterView(photoItem: GalleryItem())
+    private let brandView = BrandPictureSelecterView(photoItem: GalleryItem())
     @State var brand = CreateBrandRequestBody()
     @EnvironmentObject var mainVM: MainViewModel
    
@@ -37,34 +37,14 @@ struct PersonPhotoScreen: View {
                 brandView
                 
                 Button("Готово") {
-
+                    
                     if let data = brandView.photoItem.PhotoData {
+                        
+                        print("Что то есть")
+                        
                         guard let stringFromData = data.convertingDataToBase64String else { return }
 
                         brand.photo = stringFromData
-                        print(brand.logo.count)
-                        print(brand.photo.count)
-                        print(brand.productPhoto.count)
-                        print(brand.targetAudience)
-                        print(brand.avgBill)
-                        print(brand.brandNamePos)
-                        print(brand.brandSiteURL)
-                        print(brand.businessGroup)
-                        print(brand.category)
-                        print(brand.collaborationInterest)
-                        print(brand.formats)
-                        print(brand.fullname)
-                        print(brand.goals)
-                        print(brand.instBrandURL)
-                        print(brand.missionStatement)
-                        print(brand.presenceType)
-                        print(brand.problemSolving)
-                        print(brand.productDescription)
-                        print(brand.publicSpeaker)
-                        print(brand.subsCount)
-                        print(brand.tgNickname)
-                        print(brand.topics)
-                        print(brand.uniqueProductIs)
                        
                         // Включить после тестов
                         mainVM.createBrand(authBody: brand)
@@ -74,7 +54,6 @@ struct PersonPhotoScreen: View {
                         // allert
                         print("Фото не выбрано")
                     }
-                    
                 }
                 .frame(width: 250, height: 45.0)
                 .foregroundStyle(.white)

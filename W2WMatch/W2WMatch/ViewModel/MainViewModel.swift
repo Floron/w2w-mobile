@@ -127,13 +127,13 @@ class MainViewModel: ObservableObject {
     
     func createBrand(authBody: CreateBrandRequestBody) {
         print("create Brand called")
-        //print(authBody)
+        
         DispatchQueue.global(qos: .userInitiated).async {
             Requester.shared.brandCreate(authBody: authBody) { [self] result in
                 print("create Brand response: \(result)")
-               
+                
                 switch result {
-                case .success(let brand):
+                case .success(_):
                     self.successfullRegistration = false
                     //print(brand)
                 case .serverError(let err):
@@ -159,7 +159,7 @@ class MainViewModel: ObservableObject {
                
                 switch result {
                 case .success(let anketa):
-                    //print(anketa)
+                    print(anketa)
                     print("Success")
                 case .serverError(let err):
                     
@@ -173,20 +173,7 @@ class MainViewModel: ObservableObject {
             }
         }
     }
-    
-    
-    
-//    func handleImageNavigation(photoData: Data) -> String  {
-//        if let uiImage = UIImage(data: photoData) {
-//           
-//            guard let base64 = uiImage.base64 else { return  "" }
-//            
-//            //print("base 64 string: ", base64)
-//            return base64
-//      
-//        }
-//        return ""
-//    }
+
     /*
     func getDevelopers() {
         withAnimation {

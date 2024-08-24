@@ -9,7 +9,7 @@ import SwiftUI
 
 struct RegistrationStep11: View {
     
-    @State var brand = CreateBrandRequestBody()
+    @State var brand: CreateBrandRequestBody
     @State private var checked: [Bool]
     
     init(brand: CreateBrandRequestBody) {
@@ -83,7 +83,7 @@ struct RegistrationStep11: View {
                         .fill(Color("W2wLightBlueColor"))
                 }
                 .padding(.top)
-                .onTapGesture {
+                .simultaneousGesture(TapGesture().onEnded {
                     for (index, value) in checked.enumerated() {
                         if value {
                             if brand.collaborationInterest[0].text == "" {
@@ -93,9 +93,7 @@ struct RegistrationStep11: View {
                             }
                         }
                     }
-                    
-                    print(brand)
-                }
+                })
                 
                 Image("Vector")
                     .padding(.top, 30)

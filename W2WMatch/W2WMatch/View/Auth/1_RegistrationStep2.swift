@@ -16,8 +16,6 @@ struct RegistrationStep2: View {
                 
                 VStack {
                     
-                   // Spacer()
-                    
                     Text("Отлично!")
                         .foregroundColor(Color("W2wBlueColor"))
                         .font(.custom("PoiretOne-Regular", size: 38))
@@ -92,17 +90,13 @@ struct RegistrationStep2: View {
                         .shadow(
                             color: Color(red: 0.46, green: 0.54, blue: 0.71, opacity: 0.2), radius: 12, x: 3, y: 3
                         )
-//                        .padding()
-//                        .frame(width: 255.0, height: 45.0)
-//                        .overlay( /// apply a rounded border
-//                            RoundedRectangle(cornerRadius: 15)
-//                                .stroke(Color("W2wLightBlueColor"), lineWidth: 2))
                         .foregroundStyle(Color("W2wLightBlueColor"))
                       
                         
                     }
                     .padding(.horizontal, 50.0)
                     .frame(width: 358)
+                    
                     
                     NavigationLink(destination: RegistrationStep3(brand: brand)) {
                         Text("Далее")
@@ -114,7 +108,6 @@ struct RegistrationStep2: View {
                             .fill(Color("W2wLightBlueColor"))
                     }
                     .padding(.top)
-                    
                     
                     Image("Vector")
                         .padding(.top, 30.0)

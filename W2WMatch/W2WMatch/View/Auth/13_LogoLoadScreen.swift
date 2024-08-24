@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct LogoLoadScreen: View {
-    let brandView = BrandPictureSelecterView(photoItem: GalleryItem())
-    @State private var navigateToNextView = false
+    private let brandView = BrandPictureSelecterView(photoItem: GalleryItem())
     @State var brand = CreateBrandRequestBody()
     
     var body: some View {
@@ -36,28 +35,30 @@ struct LogoLoadScreen: View {
                 
                 brandView
                 
-                NavigationLink(destination: PersonPhotoScreen(brand: brand), isActive: $navigateToNextView) {
-                    EmptyView()
+                NavigationLink(destination: PersonPhotoScreen(brand: brand)) {
+                    Text("Далее")
                 }
-                
-                Button("Далее") {
-                    if let data = brandView.photoItem.PhotoData {
-                        guard let stringFromData = data.convertingDataToBase64String else { return }
-                    
-                        brand.logo = stringFromData
-                        
-                        self.navigateToNextView = true
-                    } else {
-                        // allert
-                        print("Фото не выбрано")
-                    }
-                }
-                .frame(width: 250, height: 45.0)
+                .frame(width: geometry.size.width - 120, height: 45.0)
                 .foregroundStyle(.white)
                 .background {
                     RoundedRectangle(cornerRadius: 15)
                         .fill(Color("W2wLightBlueColor"))
                 }
+                .padding(.top)
+                .simultaneousGesture(TapGesture().onEnded{
+                    if let data = brandView.photoItem.PhotoData {
+                        
+                        print("Что то есть")
+                        
+                        guard let stringFromData = data.convertingDataToBase64String else { return }
+                    
+                        brand.logo = stringFromData
+                    } else {
+                        // allert
+                        print("Фото не выбрано")
+                    }
+                })
+                
                
                 Image("Vector")
                     .padding(.top, 30)
@@ -69,6 +70,7 @@ struct LogoLoadScreen: View {
         }
         .navigationArrowLeft()
         .background(Color(red: 248, green: 248, blue: 248))
+        
     }
 }
 

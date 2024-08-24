@@ -70,16 +70,14 @@ struct CreateBrandResponse: Codable {
     var id: Int
     var user: User2
     var subscription: Subscription?
-    var category, presenceType, publicSpeaker, subsCount: QuestionType
-    var avgBill: QuestionType
-    var goals, formats, collaborationInterest: [QuestionType]
+    var category, presenceType, publicSpeaker, subsCount: AvgBill
+    var avgBill: AvgBill
+    var goals, formats, collaborationInterest: [AvgBill]
     var subExpire: String?
-    var published: Bool
-    var tgNickname, brandNamePos: String
-    var instBrandURL, brandSiteURL, topics, missionStatement: String
-    var targetAudience, uniqueProductIs, productDescription, problemSolving: String
-    var businessGroup, logo, photo, productPhoto: String
-    var fullname: String
+    var tgNickname, brandNamePos, instBrandURL: String
+    var brandSiteURL, topics, missionStatement, targetAudience: String
+    var uniqueProductIs, productDescription, problemSolving, businessGroup: String
+    var logo, photo, productPhoto, fullname: String
 
     enum CodingKeys: String, CodingKey {
         case id, user, subscription, category
@@ -88,7 +86,6 @@ struct CreateBrandResponse: Codable {
         case subsCount = "subs_count"
         case avgBill = "avg_bill"
         case goals, formats
-        case published
         case collaborationInterest = "collaboration_interest"
         case subExpire = "sub_expire"
         case tgNickname = "tg_nickname"
@@ -108,8 +105,8 @@ struct CreateBrandResponse: Codable {
     }
 }
 
-// MARK: - QuestionType
-struct QuestionType: Codable {
+// MARK: - AvgBill
+struct AvgBill: Codable {
     var text: String
 }
 

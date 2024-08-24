@@ -9,7 +9,7 @@ import SwiftUI
 
 struct RegistrationStep5: View {
     
-    @State var brand = CreateBrandRequestBody()
+    @State var brand: CreateBrandRequestBody
     @State private var checked: [Bool]
     
     let optionsAvgBill = ["0 - 1.000",

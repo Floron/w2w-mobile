@@ -9,7 +9,7 @@ import SwiftUI
 
 struct RegistrationStep7: View {
     
-    @State var brand = CreateBrandRequestBody()
+    @State var brand: CreateBrandRequestBody
     @State private var checked: [Bool]
     
     let optionsPresenceType = ["Online",

@@ -9,10 +9,11 @@ import SwiftUI
 
 struct LastAuthScreen: View {
     
-    @State var brandView = BrandPictureSelecterView(photoItem: GalleryItem())
-    @State private var navigateToNextView = false
+    @State private var brandView = BrandPictureSelecterView(photoItem: GalleryItem())
+//    @State private var navigateToNextView = false
     @State var brand = CreateBrandRequestBody()
- 
+    
+
     
     var body: some View {
         GeometryReader { geometry in
@@ -37,29 +38,54 @@ struct LastAuthScreen: View {
                 
                 brandView
                 
-
-                NavigationLink(destination: LogoLoadScreen(brand: brand), isActive: $navigateToNextView) {
-                    EmptyView()
+                NavigationLink(destination: LogoLoadScreen(brand: brand)) {
+                    Text("Далее")
                 }
-                
-                Button("Далее") {
-                    if let data = brandView.photoItem.PhotoData {
-                        guard let stringFromData = data.convertingDataToBase64String else { return }
-
-                        brand.productPhoto = stringFromData
-                        
-                        self.navigateToNextView = true
-                    } else {
-                        // allert
-                        print("Фото не выбрано")
-                    }
-                }
-                .frame(width: 250, height: 45.0)
+                .frame(width: geometry.size.width - 120, height: 45.0)
                 .foregroundStyle(.white)
                 .background {
                     RoundedRectangle(cornerRadius: 15)
                         .fill(Color("W2wLightBlueColor"))
                 }
+                .padding(.top)
+                .simultaneousGesture(TapGesture().onEnded{
+                    if let data = brandView.photoItem.PhotoData {
+                        
+                        print("Что то есть")
+                        
+                        guard let stringFromData = data.convertingDataToBase64String else { return }
+
+                        brand.productPhoto = stringFromData
+                        print(brand.productPhoto.count)
+                    } else {
+                        // allert
+                        print("Фото не выбрано")
+                    }
+                })
+
+//                NavigationLink(destination: LogoLoadScreen(brand: brand), isActive: $navigateToNextView) {
+//                    EmptyView()
+//                }
+                
+//                Button("Далее") {
+//                    print("Что то есть")
+//                    if let data = brandView.photoItem.PhotoData {
+//                        guard let stringFromData = data.convertingDataToBase64String else { return }
+//
+//                        brand.productPhoto = stringFromData
+//                        //print(brand.productPhoto.count)
+//                        self.navigateToNextView = true
+//                    } else {
+//                        // allert
+//                        print("Фото не выбрано")
+//                    }
+//                }
+//                .frame(width: 250, height: 45.0)
+//                .foregroundStyle(.white)
+//                .background {
+//                    RoundedRectangle(cornerRadius: 15)
+//                        .fill(Color("W2wLightBlueColor"))
+//                }
             
                 Image("Vector")
                     .padding(.top, 30)
@@ -74,11 +100,6 @@ struct LastAuthScreen: View {
     }
 }
 
-
 #Preview {
     LastAuthScreen()
 }
-
-
-
-

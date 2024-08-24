@@ -12,7 +12,9 @@ struct BrandPictureSelecterView: View {
     @State var photosPickerItem: PhotosPickerItem?
     @ObservedObject var photoItem: GalleryItem
     @MainActor @State private var isLoading = false
-    @EnvironmentObject var mainVm: MainViewModel
+    //@EnvironmentObject var mainVm: MainViewModel
+    
+    
     
     let filter: PHPickerFilter = .not(.videos)
     

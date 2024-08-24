@@ -47,11 +47,6 @@ struct AboutYorselfScreen: View {
                         color: Color(red: 0.46, green: 0.54, blue: 0.71, opacity: 0.2), radius: 12, x: 3, y: 3
                     )
                     .foregroundStyle(Color("W2wLightBlueColor"))
-//                    .padding()
-//                    .overlay( /// apply a rounded border
-//                        RoundedRectangle(cornerRadius: 15)
-//                    .stroke(Color("FrameRegistration"), lineWidth: 2))
-//                    .foregroundStyle(Color("FrameRegistration"))
                     
                     TextField(text: $user.age.animation()) {
                         Text("Возраст")
@@ -71,12 +66,6 @@ struct AboutYorselfScreen: View {
                         color: Color(red: 0.46, green: 0.54, blue: 0.71, opacity: 0.2), radius: 12, x: 3, y: 3
                     )
                     .foregroundStyle(Color("W2wLightBlueColor"))
-//                    .padding()
-//                    .overlay( /// apply a rounded border
-//                        RoundedRectangle(cornerRadius: 15)
-//                    .stroke(Color("FrameRegistration"), lineWidth: 2))
-//                    .foregroundStyle(Color("FrameRegistration"))
-
                 }
                 .padding(.bottom, 8)
                 
@@ -100,11 +89,6 @@ struct AboutYorselfScreen: View {
                         color: Color(red: 0.46, green: 0.54, blue: 0.71, opacity: 0.2), radius: 12, x: 3, y: 3
                     )
                     .foregroundStyle(Color("W2wLightBlueColor"))
-//                    .padding()
-//                    .overlay( /// apply a rounded border
-//                        RoundedRectangle(cornerRadius: 15)
-//                    .stroke(Color("FrameRegistration"), lineWidth: 2))
-//                    .foregroundStyle(Color("FrameRegistration"))
                     
                     TextField(text: $user.geographic.animation()) {
                         Text("ГЕО")
@@ -124,11 +108,6 @@ struct AboutYorselfScreen: View {
                         color: Color(red: 0.46, green: 0.54, blue: 0.71, opacity: 0.2), radius: 12, x: 3, y: 3
                     )
                     .foregroundStyle(Color("W2wLightBlueColor"))
-//                    .padding()
-//                    .overlay( /// apply a rounded border
-//                        RoundedRectangle(cornerRadius: 15)
-//                    .stroke(Color("FrameRegistration"), lineWidth: 2))
-//                    .foregroundStyle(Color("FrameRegistration"))
                 }
                 .padding(.bottom, 8)
                 
@@ -150,11 +129,6 @@ struct AboutYorselfScreen: View {
                     color: Color(red: 0.46, green: 0.54, blue: 0.71, opacity: 0.2), radius: 12, x: 3, y: 3
                 )
                 .foregroundStyle(Color("W2wLightBlueColor"))
-//                .padding()
-//                .overlay( /// apply a rounded border
-//                    RoundedRectangle(cornerRadius: 15)
-//                .stroke(Color("FrameRegistration"), lineWidth: 2))
-//                .foregroundStyle(Color("FrameRegistration"))
 
                 NavigationLink(destination: InterectionFormatScreen(brand: brand)) {
                     Text("Далее")
@@ -166,11 +140,9 @@ struct AboutYorselfScreen: View {
                         .fill(Color("W2wLightBlueColor"))
                 }
                 .padding(.top)
-                .onTapGesture {
-                   // print(user)
+                .simultaneousGesture(TapGesture().onEnded {
                     brand.targetAudience = user.gender + user.age + user.incomeLevel + user.geographic + user.interests
-                    //print(brand.targetAudience)
-                }
+                })
                 
                 Image("Vector")
                     .padding(.top, 30.0)

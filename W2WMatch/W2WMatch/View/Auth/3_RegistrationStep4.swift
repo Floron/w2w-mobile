@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RegistrationStep4: View {
-    @State var brand = CreateBrandRequestBody()
+    @State var brand: CreateBrandRequestBody
     @State private var checked: [Bool]
     
     let optionsSubs = ["0 - 1.000",
@@ -125,6 +125,7 @@ struct RegistrationStep4: View {
         .navigationArrowLeft()
         .background(Color(red: 248, green: 248, blue: 248))
     }
+    
     private func checkOnlyOne(at index: Int) {
         for i in checked.indices {
             checked[i] = (i == index)

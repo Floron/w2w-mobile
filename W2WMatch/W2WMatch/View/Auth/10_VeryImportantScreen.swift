@@ -9,7 +9,7 @@ import SwiftUI
 
 struct VeryImportantScreen: View {
     
-    @State var brand = CreateBrandRequestBody()
+    @State var brand: CreateBrandRequestBody
     @State private var checked: [Bool]
     
     init(brand: CreateBrandRequestBody) {
@@ -18,10 +18,11 @@ struct VeryImportantScreen: View {
     }
     
     let optionsGoals = ["Рост продаж",
+                        "Повышение узнаваемости и лояльности",
                         "Новая аудитория и охваты в соцсетях",
-                        "Повышение узнаваемоести и лояльности",
-                        "Совместное творчество и усиление навыков команды"]
-                   //"Другое"]
+                        "Совместное творчество и усиление навыков",
+                        "Другое"]
+                   
     
     var body: some View {
         GeometryReader { geometry in
@@ -77,11 +78,9 @@ struct VeryImportantScreen: View {
                         .fill(Color("W2wLightBlueColor"))
                 }
                 .padding(.top)
-                .onTapGesture {
+                .simultaneousGesture(TapGesture().onEnded {
                     for (index, value) in checked.enumerated() {
                         if value {
-                            print(optionsGoals[index])
-                            
                             if brand.goals[0].text == "" {
                                 brand.goals[0] = RequestQuestionType(text: optionsGoals[index], question: 18)
                             } else {
@@ -89,9 +88,7 @@ struct VeryImportantScreen: View {
                             }
                         }
                     }
-                    
-                    print(brand.goals)
-                }
+                })
                 
                 Image("Vector")
                     .padding(.top, 30)

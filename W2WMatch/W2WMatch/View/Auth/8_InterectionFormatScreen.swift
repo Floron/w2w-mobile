@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct InterectionFormatScreen: View {
-    //@State var user = AutorizedUser()
-    @State var brand = CreateBrandRequestBody()
+    @State var brand: CreateBrandRequestBody
     
     @State private var checked: [Bool]
     
@@ -18,12 +17,12 @@ struct InterectionFormatScreen: View {
         self.brand = brand
     }
     
-    let options = ["Не определилась с форматом, но готова к обсуждению", 
-                   "Совместный прямой эфир", 
-                   "Совместный прямой reels",
-                   "Совместный прямой пост",
+    let options = ["Не определилась с форматом, но открыта к обсуждению",
+                   "Совместный reels",
                    "Выпустить совместный продукт",
-                   "Провести совместно мероприятие"]
+                   "Совместный прямой эфир",
+                   "Совместный пост",
+                   "Провести совместное мероприятие"]
     
     var body: some View {
         GeometryReader { geometry in
@@ -71,6 +70,26 @@ struct InterectionFormatScreen: View {
 //                    }.frame(maxWidth: .infinity, alignment: .leading)
 //                }
                 
+//                NavigationButton(
+//                    action: { 
+//                        print("Im here")
+//                        for (index, value) in checked.enumerated() {
+//                            if value {
+//                                print(options[index])
+//                                
+//                                if brand.formats[0].text == "" {
+//                                    brand.formats[0] = RequestQuestionType(text: options[index], question: 17)
+//                                } else {
+//                                    brand.formats.append(RequestQuestionType(text: options[index], question: 17))
+//                                }
+//                            }
+//                        }
+//                        print(brand.formats)
+//                    },
+//                    destination: { VeryImportantScreen(brand: brand) },
+//                    label: { Text("Tap me") }
+//                  )
+                
                 
                 NavigationLink(destination: RegistrationStep10(brand: brand)) {
                     Text("Далее")
@@ -82,11 +101,9 @@ struct InterectionFormatScreen: View {
                         .fill(Color("W2wLightBlueColor"))
                 }
                 .padding(.top)
-                .onTapGesture {
+                .simultaneousGesture(TapGesture().onEnded{
                     for (index, value) in checked.enumerated() {
                         if value {
-                            //print(options[index])
-                            
                             if brand.formats[0].text == "" {
                                 brand.formats[0] = RequestQuestionType(text: options[index], question: 17)
                             } else {
@@ -94,9 +111,7 @@ struct InterectionFormatScreen: View {
                             }
                         }
                     }
-                    
-                    //print(brand.formats)
-                }
+                })
                 
                 Image("Vector")
                     .padding(.top, 30)
