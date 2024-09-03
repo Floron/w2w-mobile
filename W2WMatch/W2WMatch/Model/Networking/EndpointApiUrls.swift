@@ -16,7 +16,7 @@ enum Endpoint {
     case refreshTokens
     case myBrand
     case getAnketa
-//    case getDevelopers
+    case paymentList
     
     func path() -> String {
         switch self {
@@ -30,8 +30,8 @@ enum Endpoint {
             return "api/v1/brand/"
         case .getAnketa:
             return "api/v1/questionnaire/"
-//        case .getDevelopers:
-//            return "api/get_devs"
+        case .paymentList:
+            return "api/v1/payment/"
         }
     }
     

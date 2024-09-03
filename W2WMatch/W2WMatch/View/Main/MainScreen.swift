@@ -17,17 +17,26 @@ struct MainScreen: View {
             
             Text("It's Main View")
             
-//            if let user = mainVm.user {
-//                
-//                VStack {
-//                    Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-//                    Text(user.name)
-//                    Text(user.telegrammNik)
-//                    Text(user.myBrand.name)
-//                    Text(user.myBrand.tgName)
-//                    Text(user.myBrand.shopLink)
-//                }
-//            }
+            Button("Запросить анкету") {
+                mainVm.getAnketa()
+            }
+            
+            Button("Запросить тарифные планы") {
+                mainVm.getPaymentList()
+            }
+            
+            ForEach(mainVm.paymentList) { payment in
+                VStack {
+                    HStack {
+                        Text(payment.name)
+                        Text("\(payment.cost)")
+                    }
+                }
+            }
+            
+           
+            
+            Spacer()
             
             Button("Logout") {
                 mainVm.logout()

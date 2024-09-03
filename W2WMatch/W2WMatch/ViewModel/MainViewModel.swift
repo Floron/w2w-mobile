@@ -18,7 +18,7 @@ class MainViewModel: ObservableObject {
     @Published var registerPending = false
     
     
-    
+    @Published var paymentList: [PaymentListElement] = []
     // для проверки
     @Published var brandAuthBody = CreateBrandRequestBody(category: RequestQuestionType(text: "Красота и здоровье", question: 4),
                                                           presenceType: RequestQuestionType(text: "Online", question: 7),
@@ -160,6 +160,34 @@ class MainViewModel: ObservableObject {
                 switch result {
                 case .success(let anketa):
                     print(anketa)
+                    print("Success")
+                case .serverError(let err):
+                    
+                    alert = IdentifiableAlert.buildForError(id: "devs_server_err", message: Errors.messageFor(err: err.message))
+                case .networkError(_):
+                   
+                    alert = IdentifiableAlert.networkError()
+                case .authError(let err):
+                    print(err)
+                }
+            }
+        }
+    }
+    
+    
+    // получение списка тарифных планов
+    // готово, работает
+    func getPaymentList() {
+      
+        print("get Payment List called")
+        DispatchQueue.global(qos: .userInitiated).async {
+            Requester.shared.getPaymentList() { [self] result in
+                print("get Payment List response: \(result)")
+               
+                switch result {
+                case .success(let paymentList):
+                    print(paymentList)
+                    self.paymentList = paymentList
                     print("Success")
                 case .serverError(let err):
                     

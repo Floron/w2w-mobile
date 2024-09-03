@@ -120,6 +120,12 @@ class Requester {
         self.request(request: request, onResult: onResult)
     }
     
+    func getPaymentList(onResult: @escaping (Result<[PaymentListElement]>) -> Void) {
+        let url = Endpoint.paymentList.absoluteURL
+        let request = formRequest(url: url, data: Data(), method: "GET", ignoreJwtAuth: true)
+        self.request(request: request, onResult: onResult)
+    }
+    
 //    func getDevelopers(onResult: @escaping (Result<[Developer]>) -> Void) {
 //        let url = Endpoint.getDevelopers.absoluteURL
 //        let request = formRequest(url: url, data: Data(), method: "GET")
@@ -221,9 +227,9 @@ class Requester {
             
             print("=================   http Response Body    ===================")
             let responseJSON = try? JSONSerialization.jsonObject(with: data)
-            guard let responseJSON = responseJSON as? [String: Any] else { return }
             
-//            print(apiUrl)
+            //guard let responseJSON = responseJSON as? [String: Any] else { return }
+            
             print(responseJSON) //Code after Successfull POST Request
             print("=========================  end  ============================")
             

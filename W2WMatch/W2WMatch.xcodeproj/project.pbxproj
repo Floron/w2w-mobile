@@ -24,7 +24,7 @@
 		2E5CDD762C790ABC007CE713 /* NavigationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5CDD752C790ABC007CE713 /* NavigationButton.swift */; };
 		2E81F4622C1DC43C0032BFC7 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E81F4602C1DC43C0032BFC7 /* MainViewModel.swift */; };
 		2E81F47F2C1DC4590032BFC7 /* !LoadingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E81F4632C1DC4580032BFC7 /* !LoadingState.swift */; };
-		2E81F4802C1DC4590032BFC7 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E81F4642C1DC4580032BFC7 /* Endpoint.swift */; };
+		2E81F4802C1DC4590032BFC7 /* EndpointApiUrls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E81F4642C1DC4580032BFC7 /* EndpointApiUrls.swift */; };
 		2E81F4812C1DC4590032BFC7 /* Requester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E81F4652C1DC4580032BFC7 /* Requester.swift */; };
 		2E81F4822C1DC4590032BFC7 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E81F4662C1DC4580032BFC7 /* Result.swift */; };
 		2E81F4832C1DC4590032BFC7 /* TokenDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E81F4672C1DC4580032BFC7 /* TokenDecoder.swift */; };
@@ -53,6 +53,7 @@
 		2E81F4A42C1F19AE0032BFC7 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E81F4A32C1F19AE0032BFC7 /* ProfileView.swift */; };
 		2E8C0AE12C14DA6B00A19FB4 /* ErrorsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8C0AE02C14DA6B00A19FB4 /* ErrorsModel.swift */; };
 		2E8C0AE32C14E66900A19FB4 /* PoiretOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2E8C0AE22C14E66900A19FB4 /* PoiretOne-Regular.ttf */; };
+		2EADC1032C87238900BFF184 /* Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EADC1022C87238900BFF184 /* Payment.swift */; };
 		2EC0122E2C0CA2FA0029AAE8 /* W2WMatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC0122D2C0CA2FA0029AAE8 /* W2WMatchApp.swift */; };
 		2EC012302C0CA2FA0029AAE8 /* HelloView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC0122F2C0CA2FA0029AAE8 /* HelloView.swift */; };
 		2EC012322C0CA2FF0029AAE8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EC012312C0CA2FF0029AAE8 /* Assets.xcassets */; };
@@ -90,7 +91,7 @@
 		2E5CDD752C790ABC007CE713 /* NavigationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationButton.swift; sourceTree = "<group>"; };
 		2E81F4602C1DC43C0032BFC7 /* MainViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		2E81F4632C1DC4580032BFC7 /* !LoadingState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "!LoadingState.swift"; sourceTree = "<group>"; };
-		2E81F4642C1DC4580032BFC7 /* Endpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		2E81F4642C1DC4580032BFC7 /* EndpointApiUrls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndpointApiUrls.swift; sourceTree = "<group>"; };
 		2E81F4652C1DC4580032BFC7 /* Requester.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Requester.swift; sourceTree = "<group>"; };
 		2E81F4662C1DC4580032BFC7 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		2E81F4672C1DC4580032BFC7 /* TokenDecoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenDecoder.swift; sourceTree = "<group>"; };
@@ -119,6 +120,7 @@
 		2E81F4A32C1F19AE0032BFC7 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		2E8C0AE02C14DA6B00A19FB4 /* ErrorsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorsModel.swift; sourceTree = "<group>"; };
 		2E8C0AE22C14E66900A19FB4 /* PoiretOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PoiretOne-Regular.ttf"; sourceTree = "<group>"; };
+		2EADC1022C87238900BFF184 /* Payment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Payment.swift; sourceTree = "<group>"; };
 		2EC0122A2C0CA2FA0029AAE8 /* W2WMatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = W2WMatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EC0122D2C0CA2FA0029AAE8 /* W2WMatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = W2WMatchApp.swift; sourceTree = "<group>"; };
 		2EC0122F2C0CA2FA0029AAE8 /* HelloView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelloView.swift; sourceTree = "<group>"; };
@@ -175,7 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				2E81F4632C1DC4580032BFC7 /* !LoadingState.swift */,
-				2E81F4642C1DC4580032BFC7 /* Endpoint.swift */,
+				2E81F4642C1DC4580032BFC7 /* EndpointApiUrls.swift */,
 				2E81F4652C1DC4580032BFC7 /* Requester.swift */,
 				2E81F4662C1DC4580032BFC7 /* Result.swift */,
 				2E81F4672C1DC4580032BFC7 /* TokenDecoder.swift */,
@@ -261,6 +263,7 @@
 				2E81F4972C1DE6020032BFC7 /* AuthAndRegistrationResponseModels.swift */,
 				C5CC6FFC2C23582E00E707E4 /* GalleryItem.swift */,
 				2E43387A2C24846F00897B48 /* Anketa.swift */,
+				2EADC1022C87238900BFF184 /* Payment.swift */,
 				2E43387C2C248A5600897B48 /* CreateBrand.swift */,
 			);
 			path = Model;
@@ -401,7 +404,7 @@
 				2EC0122E2C0CA2FA0029AAE8 /* W2WMatchApp.swift in Sources */,
 				C54382122C28332600DB7B27 /* !TableRow.swift in Sources */,
 				2E81F48C2C1DC4590032BFC7 /* TokenInfo.swift in Sources */,
-				2E81F4802C1DC4590032BFC7 /* Endpoint.swift in Sources */,
+				2E81F4802C1DC4590032BFC7 /* EndpointApiUrls.swift in Sources */,
 				2E81F48E2C1DC4590032BFC7 /* User.swift in Sources */,
 				C54381F02C24C25000DB7B27 /* 13_LogoLoadScreen.swift in Sources */,
 				C5CC6FFA2C2355C900E707E4 /* PhotoView.swift in Sources */,
@@ -424,6 +427,7 @@
 				2E4338892C270D6D00897B48 /* 5_RegistrationStep8.swift in Sources */,
 				2E81F48F2C1DC4590032BFC7 /* Errors.swift in Sources */,
 				C5CC6FED2C22AD3C00E707E4 /* 10_VeryImportantScreen.swift in Sources */,
+				2EADC1032C87238900BFF184 /* Payment.swift in Sources */,
 				2E81F4812C1DC4590032BFC7 /* Requester.swift in Sources */,
 				2E81F4902C1DC4590032BFC7 /* Extensions.swift in Sources */,
 				2E81F47F2C1DC4590032BFC7 /* !LoadingState.swift in Sources */,
