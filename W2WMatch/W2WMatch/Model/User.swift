@@ -54,28 +54,3 @@ struct AboutUserInfo {
     var geographic: String = ""
     var interests: String = ""
 }
-
-
-
-/*
-[
-    {
-        "id": 1,
-        "name": "Лайт",
-        "cost": 12000,
-        "duration": "365 00:00:00"
-    },
-    {
-        "id": 2,
-        "name": "Комфорт",
-        "cost": 24000,
-        "duration": "365 00:00:00"
-    },
-    {
-        "id": 3,
-        "name": "Бизнес",
-        "cost": 60000,
-        "duration": "365 00:00:00"
-    }
-]
-*/

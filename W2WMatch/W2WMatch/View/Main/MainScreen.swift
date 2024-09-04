@@ -21,6 +21,10 @@ struct MainScreen: View {
                 mainVm.getAnketa()
             }
             
+            Button("Запросить зарегистрированные бренды") {
+                mainVm.getBrands()
+            }
+            
             Button("Запросить тарифные планы") {
                 mainVm.getPaymentList()
             }

@@ -19,6 +19,7 @@ class MainViewModel: ObservableObject {
     
     
     @Published var paymentList: [PaymentListElement] = []
+    @Published var brandsArray: [CreateBrandResponse] = []
     // для проверки
     @Published var brandAuthBody = CreateBrandRequestBody(category: RequestQuestionType(text: "Красота и здоровье", question: 4),
                                                           presenceType: RequestQuestionType(text: "Online", question: 7),
@@ -145,7 +146,27 @@ class MainViewModel: ObservableObject {
                 }
             }
         }
+    }
+    
+    func getBrands() {
+        print("create Brand called")
         
+        DispatchQueue.global(qos: .userInitiated).async {
+            Requester.shared.getAllBrands() { [self] result in
+                print("get All Brands response: \(result)")
+                
+                switch result {
+                case .success(let brandsList):
+                    brandsArray = brandsList
+                case .serverError(let err):
+                    alert = IdentifiableAlert.buildForError(id: "devs_server_err", message: Errors.messageFor(err: err.message))
+                case .networkError(_):
+                    alert = IdentifiableAlert.networkError()
+                case .authError(let err):
+                    print(err)
+                }
+            }
+        }
     }
     
     

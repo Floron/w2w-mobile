@@ -114,6 +114,12 @@ class Requester {
         self.request(request: request, onResult: onResult)
     }
     
+    func getAllBrands(onResult: @escaping (Result<[CreateBrandResponse]>) -> Void) {
+        let url = Endpoint.myBrand.absoluteURL
+        let request = formRequest(url: url, data: Data(), method: "GET", ignoreJwtAuth: true)
+        self.request(request: request, onResult: onResult)
+    }
+    
     func getAnketa(onResult: @escaping (Result<[AnketaElement]>) -> Void) {
         let url = Endpoint.getAnketa.absoluteURL
         let request = formRequest(url: url, data: Data(), method: "GET")
