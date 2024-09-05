@@ -8,11 +8,21 @@
 import SwiftUI
 
 struct ChatsView: View {
+    
+    @EnvironmentObject var mainVm: MainViewModel
+    
     var body: some View {
-        Text("It's Chats View")
+        VStack {
+            Text("It's Chats View")
+            
+            Button("Запросить анкету") {
+                mainVm.getAnketa()
+            }
+        }
     }
 }
 
 #Preview {
     ChatsView()
+        .environmentObject(MainViewModel())
 }

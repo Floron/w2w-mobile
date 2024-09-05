@@ -111,25 +111,25 @@ class Requester {
         print(body)
         print("=========================  end  ============================")
         let request = formRequest(url: url, data: body, method: "POST")
-        self.request(request: request, onResult: onResult)
+        self.request(request: request, ignoreJwtAuth: true, onResult: onResult)
     }
     
     func getAllBrands(onResult: @escaping (Result<[CreateBrandResponse]>) -> Void) {
         let url = Endpoint.myBrand.absoluteURL
-        let request = formRequest(url: url, data: Data(), method: "GET", ignoreJwtAuth: true)
-        self.request(request: request, onResult: onResult)
+        let request = formRequest(url: url, method: "GET", ignoreJwtAuth: true)
+        self.request(request: request, ignoreJwtAuth: true, onResult: onResult)
     }
     
     func getAnketa(onResult: @escaping (Result<[AnketaElement]>) -> Void) {
         let url = Endpoint.getAnketa.absoluteURL
-        let request = formRequest(url: url, data: Data(), method: "GET")
-        self.request(request: request, onResult: onResult)
+        let request = formRequest(url: url, method: "GET", ignoreJwtAuth: true)
+        self.request(request: request, ignoreJwtAuth: true, onResult: onResult)
     }
     
     func getPaymentList(onResult: @escaping (Result<[PaymentListElement]>) -> Void) {
         let url = Endpoint.paymentList.absoluteURL
-        let request = formRequest(url: url, data: Data(), method: "GET", ignoreJwtAuth: true)
-        self.request(request: request, onResult: onResult)
+        let request = formRequest(url: url, method: "GET", ignoreJwtAuth: true)
+        self.request(request: request, ignoreJwtAuth: true, onResult: onResult)
     }
     
 //    func getDevelopers(onResult: @escaping (Result<[Developer]>) -> Void) {
@@ -138,10 +138,11 @@ class Requester {
 //        self.request(request: request, onResult: onResult)
 //    }
     
-    func request<T: Decodable>(request: URLRequest, onResult: @escaping (Result<T>) -> Void) {
+    func request<T: Decodable>(request: URLRequest, ignoreJwtAuth: Bool = false, onResult: @escaping (Result<T>) -> Void) {
         print("request called")
-        if (needReAuth && !refreshToken.token.isEmpty) {
+        if (needReAuth && !refreshToken.token.isEmpty && !ignoreJwtAuth) {
             print("need to re-auth")
+            print("Need re auth: \(needReAuth),  refreshToken.token.isEmpty \(refreshToken.token.isEmpty)")
             authAndDoRequest(request: request, onResult: onResult)
         } else {
             print("no need to re-auth")
@@ -150,8 +151,10 @@ class Requester {
     }
     
     func authAndDoRequest<T: Decodable>(request: URLRequest, onResult: @escaping (Result<T>) -> Void) {
-        print("authAndDoRequest " + (request.url?.absoluteString ?? ""))
+        print("1. authAndDoRequest " + (request.url?.absoluteString ?? ""))
         let refreshRequest = formRefreshTokensRequest()
+        print("2. refreshRequest: \(refreshRequest.url?.absoluteString ?? "")")
+        print(refreshRequest.allHTTPHeaderFields)
         let task = URLSession.shared.dataTask(with: refreshRequest) { [self] (data, response, error) -> Void in
             if let error = error {
                 print("error refresh tokens: ", error)
