@@ -16,7 +16,7 @@ enum TabbedItems: Int, CaseIterable{
     case chat = 3
     case profile = 4
     
-    var title: String{
+    var title: String {
         switch self {
         case .main:
             return "Главная"
@@ -31,7 +31,7 @@ enum TabbedItems: Int, CaseIterable{
         }
     }
     
-    var iconName: String{
+    var iconName: String {
         switch self {
         case .main:
             return "iconMain"
@@ -52,7 +52,7 @@ struct MainTabView: View {
     @State var selectedTab = 2
     
     var body: some View {
-        ZStack(alignment: .bottom){
+        ZStack(alignment: .bottom) {
             TabView(selection: $selectedTab) {
                 PartnersView()
                     .tag(0)
@@ -68,39 +68,32 @@ struct MainTabView: View {
             
             HStack(spacing: 25) {
                     
-                    ForEach((TabbedItems.allCases), id: \.self){ item in
-                        Button{
-                            selectedTab = item.rawValue
-                        } label: {
-                            CustomTabItem(imageName: item.iconName, title: item.title, isActive: (selectedTab == item.rawValue))
-                        }
+                ForEach((TabbedItems.allCases), id: \.self) { item in
+                    Button{
+                        selectedTab = item.rawValue
+                    } label: {
+                        CustomTabItem(imageName: item.iconName, title: item.title, isActive: (selectedTab == item.rawValue))
                     }
-                    
                 }
-//                .frame(width: .infinity, height: 40)
+                
+            }
         }
     }
     
     
     func CustomTabItem(imageName: String, title: String, isActive: Bool) -> some View{
-        VStack(spacing: 5){
+        VStack(spacing: 0){
             Spacer()
             Image(imageName)
                 .resizable()
                 .renderingMode(.template)
                 .foregroundColor(isActive ? Color("W2wBlueColor") : .gray)
                 .frame(width: 30, height: 30)
-           // if isActive{
-                Text(title)
-                    .font(.system(size: 14))
-                    .foregroundColor(isActive ? Color("W2wBlueColor") : .gray)
-           // }
-            //Spacer()
+           
+            Text(title)
+                .font(.system(size: 14))
+                .foregroundColor(isActive ? Color("W2wBlueColor") : .gray)
         }
-        
-        
-//        .background(isActive ? .purple.opacity(0.4) : .clear)
-//        .cornerRadius(30)
     }
 }
 

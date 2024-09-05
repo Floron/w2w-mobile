@@ -8,11 +8,32 @@
 import SwiftUI
 
 struct PartnersView: View {
+    
+    @EnvironmentObject var mainVm: MainViewModel
+    
     var body: some View {
-        Text("It's Partners View")
+        
+        
+        VStack {
+            
+            Spacer()
+            
+            Text("It's Partners View")
+            
+            Spacer()
+            
+            Button("Запросить зарегистрированные бренды") {
+                mainVm.getBrands()
+            }
+            
+            Spacer()
+        }
+        
+        
     }
 }
 
 #Preview {
     PartnersView()
+        .environmentObject(MainViewModel())
 }
