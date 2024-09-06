@@ -17,10 +17,12 @@ class Requester {
     
     private init() {}
     
-    private func onTokensRefreshed(tokens: TokensInfo) {
+    private func onTokensRefreshed (tokens: TokensInfo) {
         UserDefaultsWorker.shared.saveAuthTokens(tokens: tokens)
         accessToken = TokenInfo(token: tokens.accessToken, expiresAt: tokens.accessTokenExpire)
+        print("accessToken Refreshed: ", accessToken)
         refreshToken = TokenInfo(token: tokens.refreshToken, expiresAt: tokens.refreshTokenExpire)
+        print("refreshToken Refreshed: ", refreshToken)
     }
     
     func dropTokens() {
@@ -28,21 +30,22 @@ class Requester {
         refreshToken = TokenInfo(token: "", expiresAt: 0)
     }
     
-    private func formRequest(url: URL,
-                             data: Data = Data(),
-                             method: String = "POST",
-                             contentType: String = "application/json",
-                             refreshTokens: Bool = false,
-                             ignoreJwtAuth: Bool = false) -> URLRequest {
+    private func formRequest (url: URL,
+                              data: Data = Data(),
+                              method: String = "POST",
+                              contentType: String = "application/json",
+                              refreshTokens: Bool = false,
+                              ignoreJwtAuth: Bool = false) -> URLRequest {
         
         var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData)
         request.httpMethod = method
         request.addValue(contentType, forHTTPHeaderField: "Content-Type")
         request.httpBody = data
         
-        if refreshTokens {
-            request.addValue("Bearer \(refreshToken.token)", forHTTPHeaderField: "Authorization")
-        } else if !accessToken.token.isEmpty && !ignoreJwtAuth {
+//        if refreshTokens {
+//            request.addValue("\(refreshToken.token)", forHTTPHeaderField: "refresh")
+//        } else 
+        if !accessToken.token.isEmpty && !ignoreJwtAuth {
             request.addValue("Bearer \(accessToken.token)", forHTTPHeaderField: "Authorization")
         }
         return request
@@ -50,10 +53,17 @@ class Requester {
     
     // запрос к апи для обновления токенов
     private func formRefreshTokensRequest() -> URLRequest {
-        return formRequest(url: Endpoint.refreshTokens.absoluteURL, refreshTokens: true)
+        let url = Endpoint.refreshTokens.absoluteURL
+        let refresh: [String: String] = ["refresh": "\(refreshToken.token)"]
+        let body = try! JSONEncoder().encode(refresh)
+//        let decodedBody = try? JSONSerialization.jsonObject(with: body)
+//       
+        //print("body for request new tokens: ", decodedBody)
+        let request = formRequest(url: url, data: body)
+        return request
     }
     
-    private func renewAuthHeader(request: URLRequest) -> URLRequest {
+    private func renewAuthHeader (request: URLRequest) -> URLRequest {
         var newRequest = request
         newRequest.setValue("Bearer \(accessToken.token)", forHTTPHeaderField: "Authorization")
         return newRequest
@@ -67,16 +77,15 @@ class Requester {
     }
     
     // MARK: - handle... эти методы при успешной авторизации или регистрации обновляют jwt токены
-    private func handleAuthResponse(response: Result<ResponseAuthTokens>, onResult: @escaping (Result<ResponseAuthTokens>) -> Void) {
+    private func handleAuthResponse (response: Result<ResponseAuthTokens>, onResult: @escaping (Result<ResponseAuthTokens>) -> Void) {
         if case .success(let serverResponse) = response {
             self.onTokensRefreshed(tokens: serverResponse.getTokensInfo())
         }
         onResult(response)
     }
     
-    private func handleRegisterResponse(authBody: AuthBody, response: Result<ResponseRegister>, onResult: @escaping (Result<ResponseRegister>) -> Void) {
+    private func handleRegisterResponse (authBody: AuthBody, response: Result<ResponseRegister>, onResult: @escaping (Result<ResponseRegister>) -> Void) {
         if case .success(_) = response {
-            
             login(authBody: authBody) { result in
                 if case .success(let authResponse) = result {
                     self.onTokensRefreshed(tokens: authResponse.getTokensInfo())
@@ -86,47 +95,44 @@ class Requester {
         onResult(response)
     }
     
-    func register(authBody: AuthBody, onResult: @escaping (Result<ResponseRegister>) -> Void) {
+    func register (authBody: AuthBody, onResult: @escaping (Result<ResponseRegister>) -> Void) {
         let url = Endpoint.register.absoluteURL
         let body = try! JSONEncoder().encode(authBody) //TODO: handle serializaztion error
-        let request = formRequest(url: url, data: body, method: "POST", ignoreJwtAuth: true)
+        let request = formRequest(url: url, data: body, ignoreJwtAuth: true)
         self.doRequest(request: request) { [self] result in
             self.handleRegisterResponse(authBody: authBody, response: result, onResult: onResult)
         }
     }
     
-    func login(authBody: AuthBody, onResult: @escaping (Result<ResponseAuthTokens>) -> Void) {
+    func login (authBody: AuthBody, onResult: @escaping (Result<ResponseAuthTokens>) -> Void) {
         let url = Endpoint.login.absoluteURL
         let body = try! JSONEncoder().encode(authBody) //TODO: handle serializaztion error
-        let request = formRequest(url: url, data: body, method: "POST", ignoreJwtAuth: true)
+        let request = formRequest(url: url, data: body, ignoreJwtAuth: true)
         self.doRequest(request: request) { [self] result in
             self.handleAuthResponse(response: result, onResult: onResult)
         }
     }
     
-    func brandCreate(authBody: CreateBrandRequestBody, onResult: @escaping (Result<CreateBrandResponse>) -> Void) {
+    func brandCreate (authBody: CreateBrandRequestBody, onResult: @escaping (Result<CreateBrandResponse>) -> Void) {
         let url = Endpoint.myBrand.absoluteURL
         let body = try! JSONEncoder().encode(authBody) //TODO: handle serializaztion error
-        print("=================   http Request Body    ===================")
-        print(body)
-        print("=========================  end  ============================")
-        let request = formRequest(url: url, data: body, method: "POST")
-        self.request(request: request, ignoreJwtAuth: true, onResult: onResult)
+        let request = formRequest(url: url, data: body)
+        self.request(request: request, onResult: onResult)
     }
     
-    func getAllBrands(onResult: @escaping (Result<[CreateBrandResponse]>) -> Void) {
+    func getAllBrands (onResult: @escaping (Result<[CreateBrandResponse]>) -> Void) {
         let url = Endpoint.myBrand.absoluteURL
         let request = formRequest(url: url, method: "GET", ignoreJwtAuth: true)
         self.request(request: request, ignoreJwtAuth: true, onResult: onResult)
     }
     
-    func getAnketa(onResult: @escaping (Result<[AnketaElement]>) -> Void) {
+    func getAnketa (onResult: @escaping (Result<[AnketaElement]>) -> Void) {
         let url = Endpoint.getAnketa.absoluteURL
         let request = formRequest(url: url, method: "GET", ignoreJwtAuth: true)
         self.request(request: request, ignoreJwtAuth: true, onResult: onResult)
     }
     
-    func getPaymentList(onResult: @escaping (Result<[PaymentListElement]>) -> Void) {
+    func getPaymentList (onResult: @escaping (Result<[PaymentListElement]>) -> Void) {
         let url = Endpoint.paymentList.absoluteURL
         let request = formRequest(url: url, method: "GET", ignoreJwtAuth: true)
         self.request(request: request, ignoreJwtAuth: true, onResult: onResult)
@@ -138,11 +144,10 @@ class Requester {
 //        self.request(request: request, onResult: onResult)
 //    }
     
-    func request<T: Decodable>(request: URLRequest, ignoreJwtAuth: Bool = false, onResult: @escaping (Result<T>) -> Void) {
+    func request<T: Decodable> (request: URLRequest, ignoreJwtAuth: Bool = false, onResult: @escaping (Result<T>) -> Void) {
         print("request called")
         if (needReAuth && !refreshToken.token.isEmpty && !ignoreJwtAuth) {
             print("need to re-auth")
-            print("Need re auth: \(needReAuth),  refreshToken.token.isEmpty \(refreshToken.token.isEmpty)")
             authAndDoRequest(request: request, onResult: onResult)
         } else {
             print("no need to re-auth")
@@ -150,11 +155,9 @@ class Requester {
         }
     }
     
-    func authAndDoRequest<T: Decodable>(request: URLRequest, onResult: @escaping (Result<T>) -> Void) {
-        print("1. authAndDoRequest " + (request.url?.absoluteString ?? ""))
+    func authAndDoRequest<T: Decodable> (request: URLRequest, onResult: @escaping (Result<T>) -> Void) {
         let refreshRequest = formRefreshTokensRequest()
-        print("2. refreshRequest: \(refreshRequest.url?.absoluteString ?? "")")
-        print(refreshRequest.allHTTPHeaderFields)
+        
         let task = URLSession.shared.dataTask(with: refreshRequest) { [self] (data, response, error) -> Void in
             if let error = error {
                 print("error refresh tokens: ", error)
@@ -175,11 +178,12 @@ class Requester {
                 }
                 return
             }
+            
             if httpResponse.isSuccessful() {
                 do {
-                    let response = try JSONDecoder().decode(TokensInfo.self, from: data)
+                    let response = try JSONDecoder().decode(ResponseAuthTokens.self, from: data)
                     print("parsed refresh response: \(response)")
-                    onTokensRefreshed(tokens: response)
+                    onTokensRefreshed(tokens: response.getTokensInfo())
                     print("saved new tokens, now doing request: \(request.url?.absoluteString ?? "")")
                     let newRequest = renewAuthHeader(request: request)
                     doRequest(request: newRequest, onResult: onResult)
@@ -211,7 +215,7 @@ class Requester {
         task.resume()
     }
     
-    func doRequest<T: Decodable>(request: URLRequest, onResult: @escaping (Result<T>) -> Void) {
+    func doRequest<T: Decodable> (request: URLRequest, onResult: @escaping (Result<T>) -> Void) {
         print("do request \(request.url?.absoluteString ?? "")")
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) -> Void in
             if let error = error {
@@ -237,7 +241,8 @@ class Requester {
             print("=================   http Response Body    ===================")
             let responseJSON = try? JSONSerialization.jsonObject(with: data)
             
-            //guard let responseJSON = responseJSON as? [String: Any] else { return }
+           // guard let responseJSON = responseJSON as? [String: Any] else { return }
+            guard let responseJSON = responseJSON else { return }
             
             print(responseJSON) //Code after Successfull POST Request
             print("=========================  end  ============================")
@@ -256,7 +261,7 @@ class Requester {
     }
     
     // обработчик ответа от апи
-    private func parseResponse<T: Decodable>(data: Data) -> Result<T> {
+    private func parseResponse<T: Decodable> (data: Data) -> Result<T> {
         do {
             return .success(try JSONDecoder().decode(T.self, from: data))
         } catch {
@@ -266,7 +271,7 @@ class Requester {
     }
     
     // обработчик ответа ошибки от апи
-    private func parseError<T>(data: Data) -> Result<T> {
+    private func parseError<T> (data: Data) -> Result<T> {
         print("parsing error")
         do {
             let errorResponse = try JSONDecoder().decode(ErrorResponse.self, from: data)

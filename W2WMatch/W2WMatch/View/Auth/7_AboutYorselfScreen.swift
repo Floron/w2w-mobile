@@ -10,7 +10,7 @@ import SwiftUI
 
 struct AboutYorselfScreen: View {
     
-    @State var user = AutorizedUser().yourselfinfo
+    @State var client = AboutClientInfo()
     @State var brand = CreateBrandRequestBody()
     
     var body: some View {
@@ -30,7 +30,7 @@ struct AboutYorselfScreen: View {
                     .multilineTextAlignment(.leading)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 HStack {
-                    TextField(text: $user.gender.animation()) {
+                    TextField(text: $client.gender.animation()) {
                         Text("Пол")
                             .font(Font.custom("Manrope", size: 14).weight(.light))
                             .lineSpacing(20)
@@ -48,7 +48,7 @@ struct AboutYorselfScreen: View {
                     )
                     .foregroundStyle(Color("W2wLightBlueColor"))
                     
-                    TextField(text: $user.age.animation()) {
+                    TextField(text: $client.age.animation()) {
                         Text("Возраст")
                             .font(Font.custom("Manrope", size: 14).weight(.light))
                             .lineSpacing(20)
@@ -70,7 +70,7 @@ struct AboutYorselfScreen: View {
                 .padding(.bottom, 8)
                 
                 HStack {
-                    TextField(text: $user.incomeLevel.animation()) {
+                    TextField(text: $client.incomeLevel.animation()) {
                         Text("Ур. дохода")
                             .font(Font.custom("Manrope", size: 14).weight(.light))
                             .lineSpacing(20)
@@ -90,7 +90,7 @@ struct AboutYorselfScreen: View {
                     )
                     .foregroundStyle(Color("W2wLightBlueColor"))
                     
-                    TextField(text: $user.geographic.animation()) {
+                    TextField(text: $client.geographic.animation()) {
                         Text("ГЕО")
                             .font(Font.custom("Manrope", size: 14).weight(.light))
                             .lineSpacing(20)
@@ -111,7 +111,7 @@ struct AboutYorselfScreen: View {
                 }
                 .padding(.bottom, 8)
                 
-                TextField(text: $user.interests.animation()) {
+                TextField(text: $client.interests.animation()) {
                     Text("Интереcы")
                         .font(Font.custom("Manrope", size: 14).weight(.light))
                         .lineSpacing(20)
@@ -141,7 +141,7 @@ struct AboutYorselfScreen: View {
                 }
                 .padding(.top)
                 .simultaneousGesture(TapGesture().onEnded {
-                    brand.targetAudience = user.gender + user.age + user.incomeLevel + user.geographic + user.interests
+                    brand.targetAudience = client.gender + client.age + client.incomeLevel + client.geographic + client.interests
                 })
                 
                 Image("Vector")

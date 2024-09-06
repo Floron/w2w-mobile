@@ -68,7 +68,7 @@ struct RequestQuestionType: Codable {
 // MARK: - CreateBrand response
 struct CreateBrandResponse: Codable {
     var id: Int
-    var user: User2
+    var user: User
     var subscription: Subscription?
     var category, presenceType, publicSpeaker, subsCount: AvgBill
     var avgBill: AvgBill
@@ -119,7 +119,16 @@ struct Subscription: Codable {
 }
 
 // MARK: - User
-struct User2: Codable {
+struct User: Codable {
     var id: Int
     var email, phone: String
+}
+
+struct AboutClientInfo {
+    var theme: String = ""
+    var gender: String = ""
+    var age: String = ""
+    var incomeLevel: String = ""
+    var geographic: String = ""
+    var interests: String = ""
 }
