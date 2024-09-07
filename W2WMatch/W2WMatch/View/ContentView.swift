@@ -15,7 +15,6 @@ struct ContentView: View {
         NavigationView {
             if mainVm.showAuthContainer {
                 HelloView()
-                //RegistrationStep2()
             } else {
                 if mainVm.successfullRegistration {
                     RegistrationStep2()
@@ -23,9 +22,6 @@ struct ContentView: View {
                     MainTabView()
                 }
             }
-//            NavigationLink(destination: LastAuthScreen(), isActive: $mainVm.navigateToNextView){
-//                LoginScreen()
-//            }
         }
         .background(Color.white.ignoresSafeArea())
         .navigationViewStyle(StackNavigationViewStyle())

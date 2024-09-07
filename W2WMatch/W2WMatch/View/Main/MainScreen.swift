@@ -172,6 +172,98 @@ struct MainScreen: View {
                         .font(.subheadline)
                         .multilineTextAlignment(.center)
                         .padding()
+                    
+                    
+                    //коллекция
+                    
+                    Text("Используй магию W2W Match для роста своего бизнеса ")
+                        .foregroundColor(Color("W2wBlueColor"))
+                        .font(.custom("PoiretOne-Regular", size: 25))
+                        .multilineTextAlignment(.center)
+                        .padding()
+                    
+                    
+                    VStack {
+                        Image("vectorTime")
+                            .frame(height: 85)
+                
+                        Text("С нами вы экономите время на поиск партнера")
+                            .fontWeight(.regular)
+                            .foregroundColor(.w2WLightBlue)
+                            .font(.subheadline)
+                            .multilineTextAlignment(.center)
+                            .padding()
+                       
+                        Image("vectorMeet")
+                            .frame(height: 85)
+        
+                        Text("Сможете познакомиться с новыми брендами")
+                            .fontWeight(.regular)
+                            .foregroundColor(.w2WLightBlue)
+                            .font(.subheadline)
+                            .multilineTextAlignment(.center)
+                            .padding()
+                      
+                        Image("vectorNetwork")
+                            .frame(height: 85)
+                  
+                        Text("Будете участвовать в нетворкингах и мероприятиях")
+                            .fontWeight(.regular)
+                            .foregroundColor(.w2WLightBlue)
+                            .font(.subheadline)
+                            .multilineTextAlignment(.center)
+                            .padding()
+                    }
+                    .padding()
+                    
+                    
+                
+                    Text("Мероприятия")
+                        .foregroundColor(Color("W2wBlueColor"))
+                        .font(.custom("PoiretOne-Regular", size: 40))
+                        .multilineTextAlignment(.center)
+                        .padding()
+                   
+                    Text("Мы регулярно проводим онлайн и офлайн мероприятия, которые могут посещать все резиденты W2W Match")
+                        .foregroundColor(Color("W2wBlueColor"))
+                        .font(.custom("PoiretOne-Regular", size: 20))
+                        .multilineTextAlignment(.center)
+                        .padding()
+                    
+                    //таблица
+                    
+                    
+                    Button(action: {
+                        print("навигация на прошедшие мероприятия")
+                    },
+                           label: {
+                        Text("Смотреть прошедшие мероприятия")
+                            .multilineTextAlignment(.leading)
+                            .frame(width: geometry.size.width - 50, height: 50.0)
+                            .font(.custom("PoiretOne-Regular", size: 18))
+                            .foregroundStyle(Color("W2wLightBlueColor"))
+                            .background {
+                                RoundedRectangle(cornerRadius: 15)
+                                    .fill(.white)
+                            }
+                            .padding(.top)
+                    })
+                .shadow(radius: 10)
+                    
+                    Button(action: {
+                        print("навигация на актуальные мероприятия")
+                    },
+                           label: {
+                        Text("Хочу получать актуальную информацию по ближайшим мероприятиям")
+                            .frame(width: geometry.size.width - 50, height: 75.0)
+                            .font(.custom("PoiretOne-Regular", size: 18))
+                            .foregroundStyle(.white)
+                            .background {
+                                RoundedRectangle(cornerRadius: 15)
+                                    .fill(Color("W2wLightBlueColor"))
+                            }
+                            .padding(.top)
+                    })
                 }
             }
         }
